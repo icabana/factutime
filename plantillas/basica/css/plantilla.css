@@ -1,0 +1,358 @@
+ @font-face{
+            font-family: "mostwasted";
+            font-style: normal;
+            font-weight: normal;
+            src: local("?"), url("plantillas/basica/fuentes/Mostwasted.woff") format("woff"), url("plantillas/basica/fuentes/Mostwasted.ttf") format("true type");
+        } 
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, 
+caption
+{ 
+    font-family: 'mostwasted', cursive;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+html{
+    background-color: #ecebe3;
+}
+
+html,body {
+      
+    font-family: 'mostwasted', cursive;
+     height: 100%;    
+}
+
+ #page-wrap{
+min-height:100%;
+
+}
+
+ #page-wrap2{
+     
+     background-color: white;
+min-height:100%;
+width: 60%;
+left: 20%;
+position: absolute;
+
+}
+
+#header{
+    display:block;
+          
+    
+}
+
+ .define {
+            width:60%;
+            margin:0 auto;           
+            z-index: 900;
+        }
+
+ .section {
+     background-color: white;
+     
+            
+        }
+        
+#footer{
+
+    position: relative;
+    height: 65px;
+    margin-top: -65px;
+    clear: both;
+
+}
+
+#cuerpo{
+
+    margin-top: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
+    height:4000px;
+    background-color: white;
+    padding-top: 1%;
+    padding-bottom:22%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align-last: center;    
+    width: 78%;
+    
+}
+
+
+/*************** OBJETOS DE TEXTOS Y PARAFOS *******************/
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+h1{
+  font-size: 120%;
+  font-weight: normal;
+  font-style: normal;
+  margin-top: 20px;
+  margin-bottom: 1px;
+}
+
+h2{
+  font-size: 110%;
+}
+
+h3{
+  font-size: 100%;
+}
+
+
+h4{
+  font-size: 70%;
+}
+
+
+h5{
+  font-size: 50%;
+}
+
+h6{
+  font-size: 30%;
+}
+
+
+ol, ul            
+{
+	list-style: none;
+}
+
+blockquote, q     
+{
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after 
+{
+	content: '';	
+	content: none;
+}
+
+p{
+	
+	padding-bottom:5px;
+	padding-bottom:5px;
+}
+
+
+:focus            
+{
+	outline: 0;
+}
+
+ins               
+{
+	text-decoration: none;
+}
+
+del               
+{
+	text-decoration: line-through;
+}
+
+table             
+{
+	
+}
+
+
+
+
+/*************** OBJETOS DE FORMULARIOS *****************/
+
+label{
+	margin: auto 5px;
+}
+
+input{
+  font-size:150%;
+  font-family: "Open Sans";
+  text-align:inherit;
+  
+  border: 1;
+  height: auto;
+  width: auto;
+  padding:0px;
+  padding-left:10px;
+  padding-right:10px;
+  margin:auto;
+  margin-bottom: 10px;
+}
+
+
+.img_input_text{
+  float:left;
+  height:1px;
+  width:100%;
+  overflow:visible;
+}
+
+td, th {
+  font-size: 14px;
+}
+
+input:hover, input:focus{	
+  color:  #000000;	
+  -moz-border-radius: 5px 5px 5px 5px;	
+}
+
+
+
+
+
+/****** ESTRUCTURA DE LA PLANTILLA ****/
+
+ 
+#contenedor.inicio{
+	width: 340px;
+	margin: auto;
+	padding: 20px;
+	padding-top: 10px;	
+	margin-top: 100px;
+	text-align:center;
+	background-color:#FFF;
+  	-moz-border-radius:15px;	
+}
+
+
+#contenedor #fondo_login{
+	color:#F00;
+}
+
+.msnErrorValidacion {
+	display:none;
+	color:#900;
+	font-weight:bold;
+}
+
+#barraBotonesFormularios {
+	height:auto;
+	text-align:right; 	
+	margin:auto; 
+	padding-top:0px;	
+	position:absolute;
+	top:45px;
+	right: 40px;
+	opacity:0.85;filter:alpha(opacity=85);	
+}
+#barraBotonesFormularios:hover {
+	opacity:1;
+	filter:alpha(opacity=1);
+}
+
+#barraBotonesRegistros {
+	height:auto;
+	width:auto;
+	text-align:right; 	
+	margin:auto;
+	margin-top:5px;
+	padding-top:0px;	
+	position:absolute;	
+	bottom:30px;
+	right:35px;
+	opacity:0.85;filter:alpha(opacity=85);	
+}
+
+#barraBotonesRegistros:hover {
+	opacity:1;
+	filter:alpha(opacity=1);
+}
+
+
+.filaDatos{	
+	text-align:center;
+	font-weight:bold;
+	font-size:110%;
+}
+
+.filaDatos span{
+	text-align:left;
+	font-style:italic;
+	font-weight:bold;
+}
+
+.filaDatos div{
+
+}
+
+.datos_resumen{
+	float:left;
+	margin: 0px 20px;
+	width: 40%
+}
+
+
+/* @end */
+
+
+title{
+	width:120px;
+	height:auto;
+	padding:10px;
+	background-color:#FF9;
+	font-weight:bold;
+}
+
+button{
+        font-family: "Open Sans", cursive; 
+         background: #e5c629;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+	border-radius: 15px;	
+	border: 2px solid #e6c074;
+	color: #fff;
+	cursor: pointer;
+	float: left;
+	font: 15px Coda;
+	height: 27px;
+	margin: 20px 0 35px 15px;
+	position: relative;
+	width: 79px;
+}
+
+button:hover{
+        background: rgb(254,193,81);
+	background: -moz-linear-gradient(top,  #e6c074,  #e5c629);
+	background: -webkit-linear-gradient(top,  #e6c074,  #e5c629);
+	background: -o-linear-gradient(top,  #e6c074,  #e5c629);
+	background: -ms-linear-gradient(top,  #e6c074,  #e5c629);
+	background: linear-gradient(top,  #e6c074,  #e5c629);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 );
+}
+
+button img{
+	width:  24px;
+	height: 24px;
+        padding:0px;
+	cursor:pointer;
+	color:#000000;
+        padding: 2px;
+	background: #e5c629;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-moz-box-shadow:#999 2px 0px 3px;
+	-webkit-box-shadow:#999 2px 0px 3px;
+	margin:0px auto;
+	text-align:center;
+}
+

@@ -1,0 +1,322 @@
+table.display tr td{
+	border-color: #21aae2;
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;        
+}
+
+table.display thead th {
+    color: black;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    border-color: #0E587C;
+    background-color:  #DBF1FB;
+    padding: 10px;
+    cursor: pointer;
+    height: 9px;
+	font-size:12px;
+	text-align: center;
+	font-weight: bold;
+}
+
+ table.display {
+    border-color: #d2ebf6;
+	margin: 10 auto;
+	width: auto;
+	clear: both;
+	border-collapse: collapse;
+}
+
+table.display tfoot th {
+    border-color: #d2ebf6;
+	padding: 3px 0px 3px 5px;
+	font-weight: bold;
+	font-weight: normal;
+}
+
+table.display tr.heading2 td {
+    border-color: #d2ebf6;
+	
+}
+
+table.display td {        
+    height: 10px;
+	padding: 0px 3px;
+    border-color: #d2ebf6;
+	border: 1px solid;
+	font-size:11px;
+	text-align:center;
+}
+
+table.display td.center {
+	text-align: center;
+}
+
+.paging_two_button .ui-button {
+	float: left;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.paging_full_numbers .ui-button {
+	padding: 2px 6px;
+	margin: 0;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.ui-buttonset .ui-button {
+	margin-right: -0.1em !important;
+}
+
+.paging_full_numbers {
+	width: 350px !important;
+}
+
+.ui-toolbar {
+	padding: 5px;
+}
+
+.dataTables_paginate {
+	width: auto;
+}
+
+.dataTables_info {
+	padding-top: 3px;
+}
+
+table.display thead th div.DataTables_sort_wrapper {
+	position: relative;
+	padding-right: 20px;
+	padding-right: 20px;
+}
+
+table.display thead th div.DataTables_sort_wrapper span {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 0;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Everything below this line is the same as demo_table.css. This file is
+ * required for 'cleanliness' of the markup
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables features
+ */
+
+.dataTables_wrapper {	
+	margin:auto;
+	margin-top: 7px;
+	margin-bottom: 3px;
+	position: relative;
+	min-height: auto;
+	_height: auto;
+	clear: both;
+}
+
+.dataTables_processing {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;	
+	text-align: center;
+	color: #999;
+	font-size: 10px;
+	padding: 2px 0;
+}
+
+.dataTables_length {  
+	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 10px;
+	width: 40%;
+	float: left;        
+}
+
+.containerPlus .dataTables_wrapper .dataTables_length select{
+	width:auto;
+}
+
+.dataTables_filter {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 10px;
+	width: 50%;
+	float: right;
+	text-align: right;
+        
+}
+
+.dataTables_info {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9px;
+	width: auto;
+	float: left;
+}
+
+.dataTables_paginate {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    float: right;
+    text-align: right;
+}
+
+/* Pagination nested */
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+	height: 16px;
+	width: 16px;
+	margin-left: 3px;
+	float: left;
+}
+
+.paginate_disabled_previous {
+	background-image: url('../imagenes/back_disabled.jpg');
+}
+
+.paginate_enabled_previous {
+	background-image: url('../imagenes/back_enabled.jpg');
+}
+
+.paginate_disabled_next {
+	background-image: url('../imagenes/forward_disabled.jpg');
+}
+
+.paginate_enabled_next {
+	background-image: url('../imagenes/forward_enabled.jpg');
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables sorting
+ */
+
+.sorting_asc {
+	background: url('../imagenes/sort_asc.jpg') no-repeat center right;
+}
+
+.sorting_desc {
+	background: url('../imagenes/sort_desc.jpg') no-repeat center right;
+}
+
+.sorting {
+	background: url('../imagenes/sort_both.jpg') no-repeat center right;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables row classes
+ */
+ 
+ table.display tr {
+	background-color: #ffffff;        
+}
+
+table.display tr.odd.gradeA {
+	background-color: #ddffdd;
+}
+
+table.display tr.even.gradeA {
+	background-color: #eeffee;
+}
+
+table.display tr.odd {
+	height: 12px;
+}
+
+table.display tr.odd.gradeA {
+	background-color: #ddffdd;
+}
+
+table.display tr.even.gradeA {
+	background-color: #eeffee;
+}
+
+table.display tr.odd.gradeC {
+	background-color: #ddddff;
+}
+
+table.display tr.even.gradeC {
+	background-color: #eeeeff;
+}
+
+table.display tr.odd.gradeX {
+	background-color: #ffdddd;
+}
+
+table.display tr.even.gradeX {
+	background-color: #ffeeee;
+}
+
+table.display tr.odd.gradeU {
+	background-color: #ddd;
+}
+
+table.display tr.even.gradeU {
+	background-color: #eee;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Misc
+ */
+.dataTables_scroll {
+	clear: both;
+}
+
+.top, .bottom {
+	padding: 15px;
+	background-color: #F5F5F5;
+	border: 1px solid #d2ebf6;;
+}
+
+.top .dataTables_info {
+	float: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.dataTables_empty {
+	text-align: center;
+}
+
+tfoot input {
+	margin: 0.5em 0;
+	width: 100%;
+	color: #444;
+}
+
+tfoot input.search_init {
+	color: #999;
+}
+
+td.group {
+	background-color: #d1cfd0;
+	border-bottom: 2px solid #d2ebf6;
+	border-top: 2px #d2ebf6;
+}
+
+td.details {
+	background-color: #d1cfd0;
+	border: 2px solid #d2ebf6;
+}
+
+
+.example_alt_pagination div.dataTables_info {
+	width: 40%;
+}
+
+.paging_full_numbers span.paginate_button,
+ 	.paging_full_numbers span.paginate_active {
+	border: 1px solid #d2ebf6;
+	padding: 2px 5px;
+	margin: 0 3px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+td.tablaDisponibilidad {
+	font-size-adjust: 1;
+}

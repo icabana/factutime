@@ -1,0 +1,131 @@
+.selectorPeriodo{
+background: none repeat scroll 0 0 #E3E3E3;
+height: 170px;
+margin: auto;
+padding: 10px;
+width: auto;
+}
+
+.period_picker_wrapper *{
+	line-height:100% !important;		
+}
+
+.period_picker_wrapper .period_picker_label span.period_picker_label{
+	background:url('images/period_picker_open_close.gif') 97% 9px no-repeat #EFEFEF;
+	border:1px solid #BBB;
+	padding:2px 20px 2px 5px;
+	cursor : pointer;
+}
+
+.period_picker_wrapper a.reset{
+	font-weight:bold;
+	padding-left:5px;
+	cursor:pointer;
+	color:#B00 !important
+}
+
+.period_picker_wrapper a:hover.reset{
+	text-decoration:none !important;
+	color:#B00 !important
+}
+
+.period_picker_wrapper .period_picker_pannel{
+	border:1px solid #BBB;
+	position:absolute;
+	z-index:1000;
+	background:#FFF;
+	height:175px;
+	width:445px;
+	display:none;
+	padding:2px
+}
+
+.period_picker_wrapper .period_picker_pannel table table{
+	border-collapse:collapse;
+	width:150px !important
+}
+
+.period_picker_wrapper .period_picker_pannel .move_left, .period_picker_wrapper .period_picker_pannel .move_right{
+	font-weight:bold;
+	vertical-align:middle;
+	cursor:pointer;
+	border:1px solid #BBB;
+	height:170px;
+	padding:0 2px
+}
+
+.period_picker_wrapper .period_picker_pannel th{
+	font-size:8pt;
+	padding:2px 0;
+	background:#eee url('images/period_picker_bg_th.png') ;
+	border:1px solid #999;
+	text-align:center;
+	color:#222 !important
+}
+
+.period_picker_wrapper .period_picker_pannel th.monthName{
+	cursor:pointer;
+}
+
+.period_picker_wrapper .period_picker_pannel .period_picker_firstMonth{
+	vertical-align:top;
+	padding:5px 5px 0 !important;
+	width:150px;
+}
+
+.period_picker_wrapper .period_picker_pannel .period_picker_secondMonth{
+	vertical-align:top;
+	padding:5px 5px 0 0 !important;
+	width:150px;
+}
+
+.period_picker_wrapper .period_picker_pannel .period_picker_inputs{
+	text-align:center;
+	padding:0 15px
+}
+
+.period_picker_wrapper .period_picker_pannel .period_picker_inputs .period_picker_input_text{
+	width:70px !important;
+	display:block;
+	border:1px solid #CCC;
+	margin:20px auto 0
+}
+
+.period_picker_wrapper .period_picker_pannel .period_picker_inputs .highlight{
+	border:1px solid #91BEDE;
+	
+}
+
+.period_picker_wrapper .period_picker_pannel .period_picker_inputs .period_picker_input_submit{
+	margin:20px 0 20px
+}
+
+.period_picker_wrapper .period_picker_pannel td td{
+	color:#333;
+	text-align:center;
+	border:1px solid #ddd;
+	font-size:8pt;
+	width:20px;
+	height:20px;
+	cursor:pointer
+}
+
+.period_picker_wrapper .period_picker_pannel td td.hover{
+	background:#EFEFEF;
+}
+
+.period_picker_wrapper .period_picker_pannel td td.selected{
+	background:#91bede;
+	color:#FFF;
+	font-weight:bold
+}
+
+.period_picker_wrapper .period_picker_pannel td td.selected_fade{
+	background:#e6f2fa;
+	color:#aaa;
+}
+
+.period_picker_wrapper .period_picker_pannel .unselected_month{
+	color:#999;
+	font-style:italic
+}
