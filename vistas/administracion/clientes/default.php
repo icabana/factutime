@@ -1,35 +1,43 @@
 <script type="text/javascript">
 
-function abrir_crear_cliente(){	
+    function abrir_crear_cliente(){	
 
-    abrirVentanaContenedor(
-            'configuracion', 'Clientes', 'abrirCrearCliente','',"crearDatePickerfull('#fechanacimiento');"
+        abrirVentanaContenedor(
+            'configuracion', 
+            'Clientes', 
+            'abrirCrearCliente',
+            '',
+            "crearDatePickerfull('#fechanacimiento');"
 
-    );	
-}
+        );	
+    }
 
-function abrir_editar_cliente(id_cliente){	
+    function abrir_editar_cliente(id_cliente){	
 
-    abrirVentanaContenedor(
-            'configuracion', 'Clientes', 'abrirEditarCliente','id_cliente='+id_cliente,"crearDatePickerfull('#fechanacimiento');"
+        abrirVentanaContenedor(
+            'configuracion', 
+            'Clientes', 
+            'abrirEditarCliente',
+            'id_cliente='+id_cliente,
+            "crearDatePickerfull('#fechanacimiento');"
 
-    );
-    
-}
+        );
+        
+    }
 
-function eliminar_cliente(id_cliente){
+    function eliminar_cliente(id_cliente){
 
-    mensaje_confirmar("¿Está seguro de eliminar este Cliente?", "eliminar_cliente2("+id_cliente+"); ");
+        mensaje_confirmar("¿Está seguro de eliminar este Cliente?", "eliminar_cliente2("+id_cliente+"); ");
 
-}
+    }
 
-function eliminar_cliente2(id_cliente){
-    
-    ejecutarAccion( 
-        'configuracion', 'Clientes', 'eliminarCliente', "id_cliente="+id_cliente, ' mensaje_alertas("success", "Cliente Eliminado con Éxito", "center"); cargarClientes();' 
-    );
+    function eliminar_cliente2(id_cliente){
+        
+        ejecutarAccion( 
+            'configuracion', 'Clientes', 'eliminarCliente', "id_cliente="+id_cliente, ' mensaje_alertas("success", "Cliente Eliminado con Éxito", "center"); cargarClientes();' 
+        );
 
-}
+    }
 
     $( document ).ready(function(){    
         CrearTabla('tabla_clientes');

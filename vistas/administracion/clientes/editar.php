@@ -9,8 +9,11 @@
         var datos = $('#formClientes').serialize();
 
         ejecutarAccion(
-            'configuracion', 'Clientes', 'editarCliente', 
-            datos, 'if(data == 1){ mensaje_alertas("success", "Cliente Editado Exitosamente", "center"); cargarClientes(); }else{  mensaje_alertas("error", "Este Cliente ya se encuentra registrado", "center");  }'
+            'configuracion', 
+            'Clientes', 
+            'editarCliente', 
+            datos, 
+            'if(data == 1){ mensaje_alertas("success", "Cliente Editado Exitosamente", "center"); cargarClientes(); }else{  mensaje_alertas("error", "Este Cliente ya se encuentra registrado", "center");  }'
         );	
             
     }

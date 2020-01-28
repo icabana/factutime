@@ -1,35 +1,43 @@
 <script type="text/javascript">
 
-function abrir_crear_proveedor(){	
+    function abrir_crear_proveedor(){	
 
-    abrirVentanaContenedor(
-            'configuracion', 'Proveedores', 'abrirCrearProveedor','',"crearDatePickerfull('#fechanacimiento');"
+        abrirVentanaContenedor(
+            'configuracion', 
+            'Proveedores',
+            'abrirCrearProveedor',
+            '',
+            "crearDatePickerfull('#fechanacimiento');"
 
-    );	
-}
+        );	
+    }
 
-function abrir_editar_proveedor(id_proveedor){	
+    function abrir_editar_proveedor(id_proveedor){	
 
-    abrirVentanaContenedor(
-            'configuracion', 'Proveedores', 'abrirEditarProveedor','id_proveedor='+id_proveedor,"crearDatePickerfull('#fechanacimiento');"
+        abrirVentanaContenedor(
+            'configuracion', 
+            'Proveedores', 
+            'abrirEditarProveedor',
+            'id_proveedor='+id_proveedor,
+            "crearDatePickerfull('#fechanacimiento');"
 
-    );
-    
-}
+        );
+        
+    }
 
-function eliminar_proveedor(id_proveedor){
+    function eliminar_proveedor(id_proveedor){
 
-    mensaje_confirmar("¿Está seguro de eliminar este Proveedor?", "eliminar_proveedor2("+id_proveedor+"); ");
+        mensaje_confirmar("¿Está seguro de eliminar este Proveedor?", "eliminar_proveedor2("+id_proveedor+"); ");
 
-}
+    }
 
-function eliminar_proveedor2(id_proveedor){
-    
-    ejecutarAccion( 
-        'configuracion', 'Proveedores', 'eliminarProveedor', "id_proveedor="+id_proveedor, ' mensaje_alertas("success", "Proveedor Eliminado con Éxito", "center"); cargarProveedores();' 
-    );
+    function eliminar_proveedor2(id_proveedor){
+        
+        ejecutarAccion( 
+            'configuracion', 'Proveedores', 'eliminarProveedor', "id_proveedor="+id_proveedor, ' mensaje_alertas("success", "Proveedor Eliminado con Éxito", "center"); cargarProveedores();' 
+        );
 
-}
+    }
 
     $( document ).ready(function(){    
         CrearTabla('tabla_proveedores');

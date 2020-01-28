@@ -9,8 +9,11 @@
         var datos = $('#formProveedores').serialize();
 
         ejecutarAccion(
-            'configuracion', 'Proveedores', 'editarProveedor', 
-            datos, 'if(data == 1){ mensaje_alertas("success", "Proveedor Editado Exitosamente", "center"); cargarProveedores(); }else{  mensaje_alertas("error", "Este Proveedor ya se encuentra registrado", "center");  }'
+            'configuracion', 
+            'Proveedores', 
+            'editarProveedor', 
+            datos, 
+            'if(data == 1){ mensaje_alertas("success", "Proveedor Editado Exitosamente", "center"); cargarProveedores(); }else{  mensaje_alertas("error", "Este Proveedor ya se encuentra registrado", "center");  }'
         );	
             
     }
@@ -22,8 +25,7 @@ $froms = new Formularios();
 ?>
 <form id="formProveedores" method="post">
     
-    
-  
+      
      
      
 <div class="box box-default">

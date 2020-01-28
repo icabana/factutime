@@ -9,8 +9,11 @@
         var datos = $('#formProveedores').serialize();
 
         ejecutarAccion(
-            'configuracion', 'Proveedores', 'insertarProveedor', 
-            datos, 'if(data == 1){ mensaje_alertas("success", "Proveedor Registrado Exitosamente", "center"); cargarProveedores(); }else{  mensaje_alertas("error", "Este Proveedor ya se encuentra registrado", "center");  }'
+            'configuracion', 
+            'Proveedores', 
+            'insertarProveedor', 
+            datos, 
+            'if(data == 1){ mensaje_alertas("success", "Proveedor Registrado Exitosamente", "center"); cargarProveedores(); }else{  mensaje_alertas("error", "Este Proveedor ya se encuentra registrado", "center");  }'
         );	
             
     }

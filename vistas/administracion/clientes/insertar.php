@@ -9,8 +9,11 @@
         var datos = $('#formClientes').serialize();
 
         ejecutarAccion(
-            'configuracion', 'Clientes', 'insertarCliente', 
-            datos, 'if(data == 1){ mensaje_alertas("success", "Cliente Registrado Exitosamente", "center"); cargarClientes(); }else{  mensaje_alertas("error", "Este Cliente ya se encuentra registrado", "center");  }'
+            'configuracion', 
+            'Clientes', 
+            'insertarCliente', 
+            datos, 
+            'if(data == 1){ mensaje_alertas("success", "Cliente Registrado Exitosamente", "center"); cargarClientes(); }else{  mensaje_alertas("error", "Este Cliente ya se encuentra registrado", "center");  }'
         );	
             
     }
@@ -130,16 +133,11 @@ $froms = new Formularios();
                   <option value="PRECIO 4">PRECIO 4</option>
               </select>
             </div>
-        </div>
-        
-
-        
-     
+        </div>       
         
 
     </div>
-</div>
-    
+</div>    
     
     
     
