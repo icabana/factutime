@@ -9,21 +9,30 @@ class ProveedoresModel extends ModelBase {
 
      $query = "select 	
 
-		tbl_proveedores.ID_PROVEEDOR, 
+     select 	
+     acto_proveedores.id_proveedor, 
+     acto_proveedores.tipodocumento_proveedor,
+     acto_proveedores.documento_proveedor,
+     acto_proveedores.nombres_proveedor,
+     acto_proveedores.apellidos_proveedor,
+     acto_proveedores.direccionresidencia_proveedor,
+     acto_proveedores.direccioncorrespondencia_proveedor,
+     acto_proveedores.telefono_proveedor,
+     acto_proveedores.celular_proveedor,
+     acto_proveedores.correo_proveedor,
+     acto_proveedores.ciudad_proveedor,
+     acto_proveedores.pais_proveedor,
+     acto_proveedores.genero_proveedor,
+     acto_proveedores.estadocivil_proveedor,
+     acto_proveedores.hijos_proveedor,
+     acto_proveedores.fechanacimiento_proveedor,
+     acto_proveedores.educacion_proveedor,
+     acto_proveedores.ocupacion_proveedor,
+     acto_proveedores.estado_proveedor,
+     acto_proveedores.paginaweb_proveedor,
+     acto_proveedores.tipo_proveedor                
 
-                tbl_proveedores.DOCUMENTO_PROVEEDOR,
-
-                tbl_proveedores.NOMBRE_PROVEEDOR,
-
-                tbl_proveedores.DIRECCION_PROVEEDOR,
-
-                tbl_proveedores.TELEFONO_PROVEEDOR,
-
-                tbl_proveedores.CORREO_PROVEEDOR,
-
-                tbl_proveedores.REGIMEN_PROVEEDOR                  
-
-                from tbl_proveedores" ;        
+     from acto_proveedores" ;        
 
                 $consulta = $this->consulta($query);
                return $consulta;       

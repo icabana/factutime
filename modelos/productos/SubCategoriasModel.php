@@ -1,65 +1,71 @@
-<?php
-
-class SubCategoriasModel extends ModelBase {
-  
-    function getTodosSubCategorias() {
-        
-     $query = "select 	
-		pro_subcategorias.ID_SUBCATEGORIA, 
-                pro_subcategorias.CODIGO_SUBCATEGORIA,
-                pro_subcategorias.DESCRIPCION_SUBCATEGORIA
-                
-                from pro_subcategorias" ;
-        
-                $consulta = $this->consulta($query);
-               return $consulta;       
-               
-    }  
-  
-    function getDatosSubCategoria($ID_SUBCATEGORIA) {
-       
-     $query = "select 	
-		pro_subcategorias.ID_SUBCATEGORIA, 
-                pro_subcategorias.CODIGO_SUBCATEGORIA,
-                pro_subcategorias.DESCRIPCION_SUBCATEGORIA
-                
-                from pro_subcategorias
-      
-                where pro_subcategorias.ID_SUBCATEGORIA='".$ID_SUBCATEGORIA."'";
-        
-         $consulta = $this->consulta($query);
-        return $consulta[0];    
-        
-    }
-    
-    function insertarSubCategoria($CODIGO_SUBCATEGORIA, $DESCRIPCION_SUBCATEGORIA) {
-                
-         $query = "INSERT INTO pro_subcategorias (CODIGO_SUBCATEGORIA, DESCRIPCION_SUBCATEGORIA)
-		VALUES('".utf8_decode(mb_strtoupper($CODIGO_SUBCATEGORIA))."', '". utf8_decode(mb_strtoupper($DESCRIPCION_SUBCATEGORIA))."');";
-       
-        return $this->crear_ultimo_id($query);       
-        
-    }
-    
-    function editarSubCategoria($ID_SUBCATEGORIA, $CODIGO_SUBCATEGORIA, $DESCRIPCION_SUBCATEGORIA) {
-        
-       $query = "UPDATE pro_subcategorias  SET CODIGO_SUBCATEGORIA = '".utf8_decode(mb_strtoupper($CODIGO_SUBCATEGORIA))."', DESCRIPCION_SUBCATEGORIA = '".utf8_decode(mb_strtoupper($DESCRIPCION_SUBCATEGORIA))."'
-           
-        WHERE ID_SUBCATEGORIA = '" . $ID_SUBCATEGORIA . "'";
-       
-       return $this->modificarRegistros($query);
-       
-    }
-    
-
-    function eliminarSubCategoria($ID_SUBCATEGORIA) {
-        
-        $query = "DELETE FROM pro_subcategorias WHERE ID_SUBCATEGORIA = '". $ID_SUBCATEGORIA ."'";
-        
-        $this->modificarRegistros($query);
-
-    }
-    
-}
-
-?>
+<?php
+
+class SubCategoriasModel extends ModelBase {
+
+
+    function getTodos() {        
+
+        $query = "select 	
+                    prod_subcategorias.id_subcategoria, 
+                    prod_subcategorias.categoria_subcategoria,
+                    prod_subcategorias.nombre_subcategoria                
+
+                    from prod_subcategorias" ;        
+
+                $consulta = $this->consulta($query);
+
+               return $consulta;                      
+
+    }  
+  
+
+    function getDatos($id_subcategoria) {       
+
+     $query = "select 	
+		        prod_subcategorias.id_subcategoria, 
+                prod_subcategorias.categoria_subcategoria,
+                prod_subcategorias.nombre_subcategoria                
+
+                from prod_subcategorias      
+
+                where prod_subcategorias.id_subcategoria='".$id_subcategoria."'";        
+
+         $consulta = $this->consulta($query);
+
+        return $consulta[0];    
+        
+
+    }   
+
+    function insertar($categoria_subcategoria, $nombre_subcategoria) {                
+
+         $query = "INSERT INTO prod_subcategorias (categoria_subcategoria, nombre_subcategoria)
+		VALUES('".utf8_decode(mb_strtoupper($categoria_subcategoria))."', '". utf8_decode(mb_strtoupper($nombre_subcategoria))."');";
+     
+        return $this->crear_ultimo_id($query);              
+
+    }
+   
+
+    function editar($id_subcategoria, $categoria_subcategoria, $nombre_subcategoria) {        
+
+       $query = "UPDATE prod_subcategorias  SET categoria_subcategoria = '".utf8_decode(mb_strtoupper($categoria_subcategoria))."', nombre_subcategoria = '".utf8_decode(mb_strtoupper($nombre_subcategoria))."'
+         
+        WHERE id_subcategoria = '" . $id_subcategoria . "'";       
+
+       return $this->modificarRegistros($query);       
+
+    }
+ 
+
+    function eliminar($id_subcategoria) {        
+
+        $query = "DELETE FROM prod_subcategorias WHERE id_subcategoria = '". $id_subcategoria ."'";
+
+        $this->modificarRegistros($query);
+
+    }    
+
+}
+
+?>
