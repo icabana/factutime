@@ -1,6 +1,6 @@
 <script type="text/javascript" >
 
-    function abrir_crear_facturas(){	
+    function nuevo_facturas(){	
 
         abrirVentanaContenedor(
             'facturas', 
@@ -12,7 +12,7 @@
 
     }
 
-    function abrir_editar_facturas(id_factura){
+    function editar_facturas(id_factura){
 
         abrirVentanaContenedor(
             
@@ -134,24 +134,24 @@
 
                 <thead>
                     <tr >          
-                        <th ><h6><center><b>CONSECUTIVO</b></center></h6></th>
-                        <th ><h6><center><b>CLIENTE</b></center></h6></th> 
-                        <th ><h6><center><b>VENDEDOR</b></center></h6></th> 
-                        <th ><h6><center><b>FECHA</b></center></h6></th> 
-                        <th ><h6><center><b>VALOR</b></center></h6></th> 
+                        <th >CONSECUTIVO</th>
+                        <th >CLIENTE</th> 
+                        <th >VENDEDOR</th> 
+                        <th >FECHA</th> 
+                        <th >VALOR</th> 
                          <?php
             if($_SESSION['rol'] == 8){
            ?>
-                        <th ><h6><center><b>Editar</b></center></h6></th>
-                        <th ><h6><center><b>Eliminar</b></center></h6></th>
+                        <th >Editar</th>
+                        <th >Eliminar</th>
                          <?php
                 
                     }
                     
                 ?>
-                        <th ><h6><center><b>Imprimir 1</b></center></h6></th>
-                        <th ><h6><center><b>Imprimir 2</b></center></h6></th>
-                        <th ><h6><center><b>Imprimir Tickets</b></center></h6></th>
+                        <th >Imprimir 1</th>
+                        <th >Imprimir 2</th>
+                        <th >Imprimir Tickets</th>
                     </tr>
                 </thead>
                 <tbody >
@@ -164,66 +164,6 @@
 
             foreach ($facturas as $NM => $items) {
 
-               
-
-                if($items['TIPO_FACTURA'] == "FACTURAS"){
-
-                    $consecutivo = "";   
-
-                    for($i = strlen($items['CONSECUTIVO_FACTURA']); $i<10 ; $i++){                        
-
-                            $consecutivo .= "0";                       
-
-                    }
-
-                    $consecutivo .= $items['CONSECUTIVO_FACTURA'];
-
-                }
-
-                if($items['TIPO_FACTURA'] == "PEDIDOS"){
-
-                    $consecutivo = "";   
-
-                    for($i = strlen($items['CONSECUTIVO2_FACTURA']); $i<10 ; $i++){                        
-
-                            $consecutivo .= "0";                       
-
-                    }
-
-                    $consecutivo .= $items['CONSECUTIVO2_FACTURA'];
-
-                }
-
-                if($items['TIPO_FACTURA'] == "COTIZACIONES"){
-
-                    $consecutivo = "";   
-
-                    for($i = strlen($items['CONSECUTIVO3_FACTURA']); $i<10 ; $i++){                        
-
-                            $consecutivo .= "0";                       
-
-                    }
-
-                    $consecutivo .= $items['CONSECUTIVO3_FACTURA'];
-
-                }
-
-                if($items['TIPO_FACTURA'] == "DEVOLUCIONES"){
-
-                    $consecutivo = "";   
-
-                    for($i = strlen($items['CONSECUTIVO4_FACTURA']); $i<10 ; $i++){                        
-
-                            $consecutivo .= "0";                       
-
-                    }
-
-                    $consecutivo .= $items['CONSECUTIVO4_FACTURA'];
-
-                }
-
-
-                
 
                 echo "<tr style='height:30px'>";
 
@@ -264,15 +204,8 @@
 ?>
 
                 </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
     </div>
-
-</div>
-
-   
+</div>  

@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-    function abrir_crear_cliente(){	
+    function nuevo_cliente(){	
 
         abrirVentanaContenedor(
             'configuracion', 
@@ -12,7 +12,7 @@
         );	
     }
 
-    function abrir_editar_cliente(id_cliente){	
+    function editar_cliente(id_cliente){	
 
         abrirVentanaContenedor(
             'configuracion', 
@@ -53,7 +53,7 @@
                     <table>
                         <tr>
                             <td>
-                                    <h1 style='font-size:20px'>GESTIONAR CLIENTES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                                    <h1 style='font-size:20px'>GESTIONAR clienteS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                             </td>
                             <td>
                                 <p></p>
@@ -69,13 +69,13 @@
                 <table id="tabla_clientes" style="width:100%;" cellpadding="0" cellspacing="0" border="0" class="display" >
                 <thead>
                     <tr > 
-                        <th ><h6><center><b>NOMBRE DEL CLIENTE</b></center></h6></th>
-                        <th ><h6><center><b>NIT/C&Eacute;DULA</b></center></h6></th>
-                        <th ><h6><center><b>DIRECCI&Oacute;N</b></center></h6></th>
-                        <th ><h6><center><b>TEL&Eacute;FONO</b></center></h6></th>
-                        <th ><h6><center><b>CORREO</b></center></h6></th>
-                        <th ><h6><center><b>EDITAR</b></center></h6></th>
-                        <th ><h6><center><b>ELIMINAR</b></center></h6></th>
+                        <th >NOMBRE DEL cliente</th>
+                        <th >NIT/C&Eacute;DULA</th>
+                        <th >DIRECCI&Oacute;N</th>
+                        <th >TEL&Eacute;FONO</th>
+                        <th >CORREO</th>
+                        <th >EDITAR</th>
+                        <th >ELIMINAR</th>
                     </tr>
                 </thead>
                 <tbody >
@@ -85,17 +85,17 @@
             foreach ($clientes as $NM => $items) {
                
                     echo "<tr style='height:30px'>";
-                    echo "<td>" . mb_strtoupper(utf8_encode( $items['NOMBRE_CLIENTE']), 'UTF-8'). "</td>";
-                    echo "<td>" .htmlentities( $items['TIPODOCUMENTO_CLIENTE']." ".number_format($items['DOCUMENTO_CLIENTE'],0,',','.')). "</td>";
-                    echo "<td>" .utf8_encode( $items['DIRECCION1_CLIENTE']." - ".$items['DIRECCION2_CLIENTE']). "</td>";
-                    echo "<td>" .htmlentities( $items['TELEFONO_CLIENTE']." - ".$items['CELULAR_CLIENTE']). "</td>";
-                    echo "<td>" .htmlentities( $items['CORREO1_CLIENTE']." - ".$items['CORREO2_CLIENTE']). "</td>";
+                    echo "<td>" . mb_strtoupper(utf8_encode( $items['NOMBRE_cliente']), 'UTF-8'). "</td>";
+                    echo "<td>" .htmlentities( $items['TIPODOCUMENTO_cliente']." ".number_format($items['DOCUMENTO_cliente'],0,',','.')). "</td>";
+                    echo "<td>" .utf8_encode( $items['direccionresidencia_cliente']). "</td>";
+                    echo "<td>" .htmlentities( $items['TELEFONO_cliente']." - ".$items['CELULAR_cliente']). "</td>";
+                    echo "<td>" .htmlentities( $items['correo_cliente'])."</td>";
                    
-                     echo '<td style="width:25px"><a href="#"><img title="Editar Cliente" alt="Editar Cliente" src="imagenes/botones/editar.png" width="35px"  onclick="abrir_editar_cliente(' .$items["ID_CLIENTE"].');" />' .
+                     echo '<td style="width:25px"><a href="#"><img title="Editar Cliente" alt="Editar Cliente" src="imagenes/botones/editar.png" width="35px"  onclick="abrir_editar_cliente(' .$items["ID_cliente"].');" />' .
                         '</a></td>' .
                         
                         '<td style="width:25px"><a href="#">' .
-		     '<img onclick="eliminar_cliente(' .$items['ID_CLIENTE']. ');"  title="Eliminar Cliente" alt="Eliminar Cliente" src="imagenes/botones/eliminar.png" width="35px" />' .
+		     '<img onclick="eliminar_cliente(' .$items['ID_cliente']. ');"  title="Eliminar Cliente" alt="Eliminar Cliente" src="imagenes/botones/eliminar.png" width="35px" />' .
 		     '</a></td>';                          
                                                                          
 				

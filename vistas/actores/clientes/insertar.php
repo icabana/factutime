@@ -76,14 +76,7 @@ $froms = new Formularios();
               <input type="text" class="form-control pull-right" id="direccion1" name="direccion1" >
             </div>
         </div>
-        
-        <div class="col-md-6">  
-              <div class="form-group">
-              <label><br>Dirección 2</label>
-              <input type="text" class="form-control pull-right" id="direccion2" name="direccion2" >
-            </div>
-        </div>
-        
+               
         
         <div class="col-md-6">
               <div class="form-group">
@@ -107,14 +100,7 @@ $froms = new Formularios();
               <input type="text" class="form-control pull-right" id="correo1" name="correo1">
             </div>
         </div>
-        
-        <div class="col-md-6"> 
-              <div class="form-group">
-              <label><br>Correo 2</label>
-              <input type="text" class="form-control pull-right" id="correo2" name="correo2">
-            </div>
-        </div>
-        
+                
         
         <div class="col-md-6"> 
               <div class="form-group">
@@ -122,19 +108,7 @@ $froms = new Formularios();
               <input type="text" class="form-control pull-right" id="ciudad" name="ciudad">
             </div>
         </div>
-        
-        <div class="col-md-6"> 
-              <div class="form-group">
-              <label><br>Facturar con:</label>
-              <select name="precio_cliente" id="precio_cliente" class="form-control pull-right">
-                  <option value="PRECIO 1">PRECIO 1</option>
-                  <option value="PRECIO 2">PRECIO 2</option>
-                  <option value="PRECIO 3">PRECIO 3</option>
-                  <option value="PRECIO 4">PRECIO 4</option>
-              </select>
-            </div>
-        </div>       
-        
+                
 
     </div>
 </div>    
