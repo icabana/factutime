@@ -8,14 +8,16 @@ class EgresosModel extends ModelBase {
 
                 fact_egresos.id_egreso, 
                 fact_egresos.consecutivo_egreso,
-                fact_egresos.tipo_egreso,
+                fact_egresos.metodo_egreso,
                 fact_egresos.fecha_egreso,
                 fact_egresos.proveedor_egreso,
                 fact_egresos.valor_egreso,
                 fact_egresos.concepto_egreso,
                 fact_egresos.numtransaccion_egreso,
                 fact_egresos.numcheque_egreso,
-                fact_egresos.banco_egreso,
+                fact_egresos.banco_egreso,                
+                
+                fact_metodospago.nombre_metodo,
 
                 acto_proveedores.id_proveedor, 
                 acto_proveedores.tipodocumento_proveedor,
@@ -37,12 +39,14 @@ class EgresosModel extends ModelBase {
                 acto_proveedores.ocupacion_proveedor,
                 acto_proveedores.estado_proveedor,
                 acto_proveedores.paginaweb_proveedor,
-                acto_proveedores.tipo_proveedor     
+                acto_proveedores.tipo_proveedor,
+
+                bancos.nombre_banco
 
                 from fact_egresos 
 
                 left join acto_proveedores ON fact_egresos.proveedor_egreso = acto_proveedores.id_proveedor
-                left join fact_egresos ON fact_egresos.tipo_egreso = fact_tiposegreso.id_tipo
+                left join fact_metodospago ON fact_egresos.metodo_egreso = fact_metodospago.id_metodo
                 left join bancos ON fact_egresos.banco_egreso = bancos.id_banco" ;
 
                 $consulta = $this->consulta($query);
@@ -56,14 +60,16 @@ class EgresosModel extends ModelBase {
 
                 fact_egresos.id_egreso, 
                 fact_egresos.consecutivo_egreso,
-                fact_egresos.tipo_egreso,
+                fact_egresos.metodo_egreso,
                 fact_egresos.fecha_egreso,
                 fact_egresos.proveedor_egreso,
                 fact_egresos.valor_egreso,
                 fact_egresos.concepto_egreso,
                 fact_egresos.numtransaccion_egreso,
                 fact_egresos.numcheque_egreso,
-                fact_egresos.banco_egreso,
+                fact_egresos.banco_egreso,                
+                
+                fact_metodospago.nombre_metodo,
 
                 acto_proveedores.id_proveedor, 
                 acto_proveedores.tipodocumento_proveedor,
@@ -85,12 +91,14 @@ class EgresosModel extends ModelBase {
                 acto_proveedores.ocupacion_proveedor,
                 acto_proveedores.estado_proveedor,
                 acto_proveedores.paginaweb_proveedor,
-                acto_proveedores.tipo_proveedor     
+                acto_proveedores.tipo_proveedor,
+                
+                bancos.nombre_banco
 
                 from fact_egresos 
 
                 left join acto_proveedores ON fact_egresos.proveedor_egreso = acto_proveedores.id_proveedor
-                left join fact_egresos ON fact_egresos.tipo_egreso = fact_tiposegreso.id_tipo
+                left join fact_metodospago ON fact_egresos.metodo_egreso = fact_metodospago.id_metodo
                 left join bancos ON fact_egresos.banco_egreso = bancos.id_banco
 
                 where 
@@ -108,14 +116,16 @@ class EgresosModel extends ModelBase {
 
                 fact_egresos.id_egreso, 
                 fact_egresos.consecutivo_egreso,
-                fact_egresos.tipo_egreso,
+                fact_egresos.metodo_egreso,
                 fact_egresos.fecha_egreso,
                 fact_egresos.proveedor_egreso,
                 fact_egresos.valor_egreso,
                 fact_egresos.concepto_egreso,
                 fact_egresos.numtransaccion_egreso,
                 fact_egresos.numcheque_egreso,
-                fact_egresos.banco_egreso,
+                fact_egresos.banco_egreso,                
+                
+                fact_metodospago.nombre_metodo,
 
                 acto_proveedores.id_proveedor, 
                 acto_proveedores.tipodocumento_proveedor,
@@ -137,15 +147,17 @@ class EgresosModel extends ModelBase {
                 acto_proveedores.ocupacion_proveedor,
                 acto_proveedores.estado_proveedor,
                 acto_proveedores.paginaweb_proveedor,
-                acto_proveedores.tipo_proveedor     
+                acto_proveedores.tipo_proveedor,
+                
+                bancos.nombre_banco
 
                 from fact_egresos 
 
                 left join acto_proveedores ON fact_egresos.proveedor_egreso = acto_proveedores.id_proveedor
-                left join fact_egresos ON fact_egresos.tipo_egreso = fact_tiposegreso.id_tipo
+                left join fact_metodospago ON fact_egresos.metodo_egreso = fact_metodospago.id_metodo
                 left join bancos ON fact_egresos.banco_egreso = bancos.id_banco
 
-                        where fact_egresos.consecutivo_egreso != '' and proveedor_egreso = '".$proveedor_egreso."'" ;
+                where fact_egresos.consecutivo_egreso != '' and proveedor_egreso = '".$proveedor_egreso."'" ;
 
                 $consulta = $this->consulta($query);
                return $consulta;                      
@@ -157,44 +169,48 @@ class EgresosModel extends ModelBase {
 
      $query = "select   
 
-            fact_egresos.id_egreso, 
-            fact_egresos.consecutivo_egreso,
-            fact_egresos.tipo_egreso,
-            fact_egresos.fecha_egreso,
-            fact_egresos.proveedor_egreso,
-            fact_egresos.valor_egreso,
-            fact_egresos.concepto_egreso,
-            fact_egresos.numtransaccion_egreso,
-            fact_egresos.numcheque_egreso,
-            fact_egresos.banco_egreso,
+                fact_egresos.id_egreso, 
+                fact_egresos.consecutivo_egreso,
+                fact_egresos.metodo_egreso,
+                fact_egresos.fecha_egreso,
+                fact_egresos.proveedor_egreso,
+                fact_egresos.valor_egreso,
+                fact_egresos.concepto_egreso,
+                fact_egresos.numtransaccion_egreso,
+                fact_egresos.numcheque_egreso,
+                fact_egresos.banco_egreso,                
+                
+                fact_metodospago.nombre_metodo,
 
-            acto_proveedores.id_proveedor, 
-            acto_proveedores.tipodocumento_proveedor,
-            acto_proveedores.documento_proveedor,
-            acto_proveedores.nombres_proveedor,
-            acto_proveedores.apellidos_proveedor,
-            acto_proveedores.direccionresidencia_proveedor,
-            acto_proveedores.direccioncorrespondencia_proveedor,
-            acto_proveedores.telefono_proveedor,
-            acto_proveedores.celular_proveedor,
-            acto_proveedores.correo_proveedor,
-            acto_proveedores.ciudad_proveedor,
-            acto_proveedores.pais_proveedor,
-            acto_proveedores.genero_proveedor,
-            acto_proveedores.estadocivil_proveedor,
-            acto_proveedores.hijos_proveedor,
-            acto_proveedores.fechanacimiento_proveedor,
-            acto_proveedores.educacion_proveedor,
-            acto_proveedores.ocupacion_proveedor,
-            acto_proveedores.estado_proveedor,
-            acto_proveedores.paginaweb_proveedor,
-            acto_proveedores.tipo_proveedor     
+                acto_proveedores.id_proveedor, 
+                acto_proveedores.tipodocumento_proveedor,
+                acto_proveedores.documento_proveedor,
+                acto_proveedores.nombres_proveedor,
+                acto_proveedores.apellidos_proveedor,
+                acto_proveedores.direccionresidencia_proveedor,
+                acto_proveedores.direccioncorrespondencia_proveedor,
+                acto_proveedores.telefono_proveedor,
+                acto_proveedores.celular_proveedor,
+                acto_proveedores.correo_proveedor,
+                acto_proveedores.ciudad_proveedor,
+                acto_proveedores.pais_proveedor,
+                acto_proveedores.genero_proveedor,
+                acto_proveedores.estadocivil_proveedor,
+                acto_proveedores.hijos_proveedor,
+                acto_proveedores.fechanacimiento_proveedor,
+                acto_proveedores.educacion_proveedor,
+                acto_proveedores.ocupacion_proveedor,
+                acto_proveedores.estado_proveedor,
+                acto_proveedores.paginaweb_proveedor,
+                acto_proveedores.tipo_proveedor,
+                
+                bancos.nombre_banco
 
-            from fact_egresos 
+                from fact_egresos 
 
-            left join acto_proveedores ON fact_egresos.proveedor_egreso = acto_proveedores.id_proveedor
-            left join fact_egresos ON fact_egresos.tipo_egreso = fact_tiposegreso.id_tipo
-            left join bancos ON fact_egresos.banco_egreso = bancos.id_banco
+                left join acto_proveedores ON fact_egresos.proveedor_egreso = acto_proveedores.id_proveedor
+                left join fact_metodospago ON fact_egresos.metodo_egreso = fact_metodospago.id_metodo
+                left join bancos ON fact_egresos.banco_egreso = bancos.id_banco
 
             where fact_egresos.id_egreso = '".$id_egreso."'";        
 
@@ -207,7 +223,7 @@ class EgresosModel extends ModelBase {
 
     function insertar(
                     $consecutivo_egreso,
-                    $tipo_egreso, 
+                    $metodo_egreso, 
                     $fecha_egreso, 
                     $proveedor_egreso, 
                     $valor_egreso, 
@@ -219,7 +235,7 @@ class EgresosModel extends ModelBase {
 
        $query = "INSERT fact_egresos(
                             consecutivo_egreso, 
-                            tipo_egreso, 
+                            metodo_egreso, 
                             fecha_egreso, 
                             proveedor_egreso, 
                             valor_egreso, 
@@ -230,7 +246,7 @@ class EgresosModel extends ModelBase {
                         ) 
                     VALUES(
                             '".$consecutivo_egreso."', 
-                            '".$tipo_egreso."', 
+                            '".$metodo_egreso."', 
                             '".$fecha_egreso."',
                             '".$proveedor_egreso."', 
                             '".$valor_egreso."', 
@@ -247,8 +263,7 @@ class EgresosModel extends ModelBase {
 
     function guardar(
                     $id_egreso,
-                    $consecutivo_egreso,
-                    $tipo_egreso, 
+                    $metodo_egreso, 
                     $fecha_egreso, 
                     $proveedor_egreso, 
                     $valor_egreso, 
@@ -260,14 +275,14 @@ class EgresosModel extends ModelBase {
 
        $query = "UPDATE fact_egresos  
 
-                    SET consecutivo_egreso = '".$consecutivo_egreso."', 
-                        tipo_egreso = '".$tipo_egreso."', 
-                        VENDEDOR_egreso = '".$VENDEDOR_egreso."', 
+                    SET metodo_egreso = '".$metodo_egreso."', 
+                        fecha_egreso = '".$fecha_egreso."', 
+                        proveedor_egreso = '".$proveedor_egreso."', 
                         valor_egreso = '".$valor_egreso."', 
-                        tipo_egreso = '".$tipo_egreso."', 
-                        OBSERVACIONES_egreso = '".$OBSERVACIONES_egreso."', 
-                        FORMAPAGO_egreso = '".$FORMAPAGO_egreso."', 
-                        numtransaccion_egreso = '".$numtransaccion_egreso."'
+                        concepto_egreso = '".$concepto_egreso."', 
+                        numtransaccion_egreso = '".$numtransaccion_egreso."',
+                        numcheque_egreso = '".$numcheque_egreso."', 
+                        banco_egreso = '".$banco_egreso."'
 
         WHERE id_egreso = '" . $id_egreso . "'";
 
@@ -298,13 +313,15 @@ class EgresosModel extends ModelBase {
     }
     
     
-    function getTotalEgresosPorMes($MES, $tipo_egreso) {
+    function getTotalEgresosPorMes($MES, $metodo_egreso) {
 
      $query = "select   sum(fact_egresos.valor_egreso) as total
 
                         from fact_egresos 
 
-                        where substr(fact_egresos.fecha_egreso, 6, 2) = ".$MES." AND fact_egresos.tipo_egreso = '".$tipo_egreso."'" ;
+                        where 
+                        substr(fact_egresos.fecha_egreso, 6, 2) = ".$MES." AND 
+                        fact_egresos.metodo_egreso = '".$metodo_egreso."'" ;
 
                 $consulta = $this->consulta($query);
                 
@@ -315,9 +332,4 @@ class EgresosModel extends ModelBase {
     
 }
 
-
-
 ?>
-
-
-
