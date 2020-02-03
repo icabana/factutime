@@ -10,6 +10,7 @@ class ClientesModel extends ModelBase {
                 acto_clientes.documento_cliente,
                 acto_clientes.nombres_cliente,
                 acto_clientes.apellidos_cliente,
+                concat( clientes.nombres_cliente,' ',clientes.apellidos_cliente) as nombre_cliente,
                 acto_clientes.direccionresidencia_cliente,
                 acto_clientes.direccioncorrespondencia_cliente,
                 acto_clientes.telefono_cliente,
@@ -25,9 +26,33 @@ class ClientesModel extends ModelBase {
                 acto_clientes.ocupacion_cliente,
                 acto_clientes.estado_cliente,
                 acto_clientes.paginaweb_cliente,
-                acto_clientes.tipo_cliente                
+                acto_clientes.tipo_cliente,
+            
+                tiposdocumento.nombre_tipodocumento,
 
-                from acto_clientes" ;       
+                paises.nombre_pais,
+
+                generos.nombre_genero,
+
+                estadoscivil.nombre_estadocivil,
+
+                educaciones.nombre_educacion,
+
+                ocupaciones.nombre_ocupacion,
+
+                estados.nombre_estado,
+
+                actos_tipos.nombre_tipo,
+
+                from acto_clientes
+                    left join tiposdocumento on clientes.tipodocumento_cliente = tiposdocumento.id_tipodocumento
+                    left join paises on clientes.pais_cliente = paises.id_pais       
+                    left join generos on clientes.genero_cliente = generos.id_genero
+                    left join estadoscivil on clientes.estadocivil_cliente = estadoscivil.id_estadocivil
+                    left join educaciones on clientes.educacion_cliente = educaciones.id_educacion
+                    left join ocupaciones on clientes.ocupacion_cliente = ocupaciones.id_ocupacion
+                    left join estados on clientes.estado_cliente = estados.id_estado
+                    left join acto_tipos on clientes.tipo_cliente = acto_tipos.id_tipo";
 
                 $consulta = $this->consulta($query);
                return $consulta;                    
@@ -38,19 +63,54 @@ class ClientesModel extends ModelBase {
     function getClientesLIKE($texto) {       
 
      $query = "select 	
-		acto_clientes.ID_cliente, 
-                acto_clientes.DOCUMENTO_cliente,
-                acto_clientes.CONTACTO_cliente,
-                acto_clientes.NOMBRE_cliente,
-                acto_clientes.DIRECCION1_cliente,
-                acto_clientes.DIRECCION2_cliente,
-                acto_clientes.TELEFONO_cliente,
-                acto_clientes.CELULAR_cliente,
-                acto_clientes.CORREO1_cliente,
-                acto_clientes.CORREO2_cliente,
-                acto_clientes.CIUDAD_cliente                
+     acto_clientes.id_cliente, 
+     acto_clientes.tipodocumento_cliente,
+     acto_clientes.documento_cliente,
+     acto_clientes.nombres_cliente,
+     acto_clientes.apellidos_cliente,
+     concat( clientes.nombres_cliente,' ',clientes.apellidos_cliente) as nombre_cliente,
+     acto_clientes.direccionresidencia_cliente,
+     acto_clientes.direccioncorrespondencia_cliente,
+     acto_clientes.telefono_cliente,
+     acto_clientes.celular_cliente,
+     acto_clientes.correo_cliente,
+     acto_clientes.ciudad_cliente,
+     acto_clientes.pais_cliente,
+     acto_clientes.genero_cliente,
+     acto_clientes.estadocivil_cliente,
+     acto_clientes.hijos_cliente,
+     acto_clientes.fechanacimiento_cliente,
+     acto_clientes.educacion_cliente,
+     acto_clientes.ocupacion_cliente,
+     acto_clientes.estado_cliente,
+     acto_clientes.paginaweb_cliente,
+     acto_clientes.tipo_cliente,
+ 
+     tiposdocumento.nombre_tipodocumento,
 
-                from acto_clientes                
+     paises.nombre_pais,
+
+     generos.nombre_genero,
+
+     estadoscivil.nombre_estadocivil,
+
+     educaciones.nombre_educacion,
+
+     ocupaciones.nombre_ocupacion,
+
+     estados.nombre_estado,
+
+     actos_tipos.nombre_tipo,
+
+     from acto_clientes
+         left join tiposdocumento on clientes.tipodocumento_cliente = tiposdocumento.id_tipodocumento
+         left join paises on clientes.pais_cliente = paises.id_pais       
+         left join generos on clientes.genero_cliente = generos.id_genero
+         left join estadoscivil on clientes.estadocivil_cliente = estadoscivil.id_estadocivil
+         left join educaciones on clientes.educacion_cliente = educaciones.id_educacion
+         left join ocupaciones on clientes.ocupacion_cliente = ocupaciones.id_ocupacion
+         left join estados on clientes.estado_cliente = estados.id_estado
+         left join acto_tipos on clientes.tipo_cliente = acto_tipos.id_tipo
 
                 where acto_clientes.NOMBRE_cliente LIKE '%".$texto."%'" ;        
 
@@ -58,40 +118,135 @@ class ClientesModel extends ModelBase {
                return $consulta;                     
 
     }  
-
   
 
     function getDatosCliente($ID_cliente) {       
 
      $query = "select 	
-		acto_clientes.ID_cliente, 
-                acto_clientes.DOCUMENTO_cliente,
-                acto_clientes.CONTACTO_cliente,
-                acto_clientes.NOMBRE_cliente,
-                acto_clientes.DIRECCION1_cliente,
-                acto_clientes.DIRECCION2_cliente,
-                acto_clientes.TELEFONO_cliente,
-                acto_clientes.CELULAR_cliente,
-                acto_clientes.CORREO1_cliente,
-                acto_clientes.CORREO2_cliente,
-                acto_clientes.CIUDAD_cliente                
+		        acto_clientes.id_cliente, 
+                acto_clientes.tipodocumento_cliente,
+                acto_clientes.documento_cliente,
+                acto_clientes.nombres_cliente,
+                acto_clientes.apellidos_cliente,
+                concat( clientes.nombres_cliente,' ',clientes.apellidos_cliente) as nombre_cliente,
+                acto_clientes.direccionresidencia_cliente,
+                acto_clientes.direccioncorrespondencia_cliente,
+                acto_clientes.telefono_cliente,
+                acto_clientes.celular_cliente,
+                acto_clientes.correo_cliente,
+                acto_clientes.ciudad_cliente,
+                acto_clientes.pais_cliente,
+                acto_clientes.genero_cliente,
+                acto_clientes.estadocivil_cliente,
+                acto_clientes.hijos_cliente,
+                acto_clientes.fechanacimiento_cliente,
+                acto_clientes.educacion_cliente,
+                acto_clientes.ocupacion_cliente,
+                acto_clientes.estado_cliente,
+                acto_clientes.paginaweb_cliente,
+                acto_clientes.tipo_cliente,
+            
+                tiposdocumento.nombre_tipodocumento,
 
-                from acto_clientes      
+                paises.nombre_pais,
+
+                generos.nombre_genero,
+
+                estadoscivil.nombre_estadocivil,
+
+                educaciones.nombre_educacion,
+
+                ocupaciones.nombre_ocupacion,
+
+                estados.nombre_estado,
+
+                actos_tipos.nombre_tipo,
+
+                from acto_clientes
+                    left join tiposdocumento on clientes.tipodocumento_cliente = tiposdocumento.id_tipodocumento
+                    left join paises on clientes.pais_cliente = paises.id_pais       
+                    left join generos on clientes.genero_cliente = generos.id_genero
+                    left join estadoscivil on clientes.estadocivil_cliente = estadoscivil.id_estadocivil
+                    left join educaciones on clientes.educacion_cliente = educaciones.id_educacion
+                    left join ocupaciones on clientes.ocupacion_cliente = ocupaciones.id_ocupacion
+                    left join estados on clientes.estado_cliente = estados.id_estado
+                    left join acto_tipos on clientes.tipo_cliente = acto_tipos.id_tipo
 
                 where acto_clientes.ID_cliente='".$ID_cliente."'";        
 
          $consulta = $this->consulta($query);
         return $consulta[0];            
 
-    }
+    }   
 
-    
-
-    function insertarCliente($NOMBRE_cliente, $TIPODOCUMENTO_cliente, $DOCUMENTO_cliente, $CONTACTO_cliente, $DIRECCION1_cliente, $DIRECCION2_cliente, $TELEFONO_cliente, $CELULAR_cliente, $CORREO1_cliente, $CORREO2_cliente, $CIUDAD_cliente, $PRECIO_cliente) {
+    function insertarCliente(
+                            $tipodocumento_cliente,
+                            $documento_cliente,
+                            $nombres_cliente,
+                            $apellidos_cliente,
+                            $direccionresidencia_cliente,
+                            $direccioncorrespondencia_cliente,
+                            $telefono_cliente,
+                            $celular_cliente,
+                            $correo_cliente,
+                            $ciudad_cliente,
+                            $pais_cliente,
+                            $genero_cliente,
+                            $estadocivil_cliente,
+                            $hijos_cliente,
+                            $fechanacimiento_cliente,
+                            $educacion_cliente,
+                            $ocupacion_cliente,
+                            $estado_cliente,
+                            $paginaweb_cliente,
+                            $tipo_cliente    
+                            ) {
                
-         $query = "INSERT INTO acto_clientes (NOMBRE_cliente, TIPODOCUMENTO_cliente, DOCUMENTO_cliente, CONTACTO_cliente, DIRECCION1_cliente, DIRECCION2_cliente, TELEFONO_cliente, CELULAR_cliente, CORREO1_cliente, CORREO2_cliente, CIUDAD_cliente, PRECIO_cliente)
+         $query = "INSERT INTO acto_clientes (
+                            tipodocumento_cliente,
+                            documento_cliente,
+                            nombres_cliente,
+                            apellidos_cliente,
+                            direccionresidencia_cliente,
+                            direccioncorrespondencia_cliente,
+                            telefono_cliente,
+                            celular_cliente,
+                            correo_cliente,
+                            ciudad_cliente,
+                            pais_cliente,
+                            genero_cliente,
+                            estadocivil_cliente,
+                            hijos_cliente,
+                            fechanacimiento_cliente,
+                            educacion_cliente,
+                            ocupacion_cliente,
+                            estado_cliente,
+                            paginaweb_cliente,
+                            tipo_cliente  
+                            )
 
-		VALUES('".utf8_decode(mb_strtoupper($NOMBRE_cliente,'UTF-8'))."', '". $TIPODOCUMENTO_cliente."', '". $DOCUMENTO_cliente."', '". utf8_decode(mb_strtoupper($CONTACTO_cliente,'UTF-8'))."', '". utf8_decode(mb_strtoupper($DIRECCION1_cliente,'UTF-8'))."', '". utf8_decode(mb_strtoupper($DIRECCION2_cliente,'UTF-8'))."', '". $TELEFONO_cliente."', '". $CELULAR_cliente."', '". $CORREO1_cliente."', '". $CORREO2_cliente."', '". utf8_decode(mb_strtoupper($CIUDAD_cliente,'UTF-8'))."', '". $PRECIO_cliente."');";
+		            VALUES(
+                        '". $tipodocumento_cliente."', 
+                        '". $documento_cliente."',
+                        '". $nombres_cliente."', 
+                        '". $apellidos_cliente."', 
+                        '". $direccionresidencia_cliente."', 
+                        '". $direccioncorrespondencia_cliente."', 
+                        '". $telefono_cliente."', 
+                        '". $celular_cliente."',
+                        '". $correo_cliente."', 
+                        '". $ciudad_cliente."', 
+                        '". $pais_cliente."', 
+                        '". $genero_cliente."',
+                        '". $estadocivil_cliente."',
+                        '". $hijos_cliente."',
+                        '". $fechanacimiento_cliente."',
+                        '". $educacion_cliente."',
+                        '". $ocupacion_cliente."',
+                        '". $estado_cliente."',
+                        '". $paginaweb_cliente."',
+                        '". $tipo_cliente."'
+                        );";
 
 
         return $this->crear_ultimo_id($query);       
@@ -101,41 +256,68 @@ class ClientesModel extends ModelBase {
 
     
 
-    function editarCliente($ID_cliente, $NOMBRE_cliente, $DOCUMENTO_cliente, $CONTACTO_cliente, $DIRECCION1_cliente, $DIRECCION2_cliente, $TELEFONO_cliente, $CELULAR_cliente, $CORREO1_cliente, $CORREO2_cliente, $CIUDAD_cliente, $PRECIO_cliente) {
+    function editarCliente(
+                            $id_cliente,
+                            $tipodocumento_cliente,
+                            $documento_cliente,
+                            $nombres_cliente,
+                            $apellidos_cliente,
+                            $direccionresidencia_cliente,
+                            $direccioncorrespondencia_cliente,
+                            $telefono_cliente,
+                            $celular_cliente,
+                            $correo_cliente,
+                            $ciudad_cliente,
+                            $pais_cliente,
+                            $genero_cliente,
+                            $estadocivil_cliente,
+                            $hijos_cliente,
+                            $fechanacimiento_cliente,
+                            $educacion_cliente,
+                            $ocupacion_cliente,
+                            $estado_cliente,
+                            $paginaweb_cliente,
+                            $tipo_cliente 
+    ) {
 
-       $query = "UPDATE acto_clientes  SET NOMBRE_cliente = '".utf8_decode(mb_strtoupper($NOMBRE_cliente,'UTF-8'))."', DOCUMENTO_cliente = '".$DOCUMENTO_cliente."', CONTACTO_cliente = '".utf8_decode(mb_strtoupper($CONTACTO_cliente,'UTF-8'))."', DIRECCION1_cliente = '".utf8_decode(mb_strtoupper($DIRECCION1_cliente,'UTF-8'))."', DIRECCION2_cliente = '".utf8_decode(mb_strtoupper($DIRECCION2_cliente,'UTF-8'))."', TELEFONO_cliente = '".$TELEFONO_cliente."', CELULAR_cliente = '".$CELULAR_cliente."', CORREO1_cliente = '".$CORREO1_cliente."', CORREO2_cliente = '".$CORREO2_cliente."', CIUDAD_cliente = '".utf8_decode(mb_strtoupper($CIUDAD_cliente,'UTF-8'))."', PRECIO_cliente = '".$PRECIO_cliente."'
+    $query = "  UPDATE acto_clientes  
+               
+                SET tipodocumento_cliente = '".$tipodocumento_cliente."', 
+                    documento_cliente = '".$documento_cliente."', 
+                    nombres_cliente = '".$nombres_cliente."',
+                    apellidos_cliente = '".$apellidos_cliente."', 
+                    direccionresidencia_cliente = '".$direccionresidencia_cliente."', 
+                    direccioncorrespondencia_cliente = '".$direccioncorrespondencia_cliente."', 
+                    telefono_cliente = '".$telefono_cliente."', 
+                    celular_cliente = '".$celular_cliente."', 
+                    correo_cliente = '".$correo_cliente."', 
+                    ciudad_cliente = '".$ciudad_cliente."', 
+                    pais_cliente = '".$pais_cliente."', 
+                    genero_cliente = '".$genero_cliente."', 
+                    estadocivil_cliente = '".$estadocivil_cliente."', 
+                    hijos_cliente = '".$hijos_cliente."', 
+                    fechanacimiento_cliente = '".$fechanacimiento_cliente."', 
+                    educacion_cliente = '".$educacion_cliente."', 
+                    ocupacion_cliente = '".$ocupacion_cliente."', 
+                    estado_cliente = '".$estado_cliente."', 
+                    paginaweb_cliente = '".$paginaweb_cliente."',
+                    tipo_cliente = '".$tipo_cliente."'
 
-        WHERE ID_cliente = '" . $ID_cliente . "'";
+        WHERE id_cliente = '" . $id_cliente . "'";
 
        return $this->modificarRegistros($query);
-
-       
-
+      
     }
 
-    
 
+    function eliminarCliente($id_cliente) {
 
-
-    function eliminarCliente($ID_cliente) {
-
-        
-
-        $query = "DELETE FROM acto_clientes WHERE ID_cliente = '". $ID_cliente ."'";
-
-        
+        $query = "DELETE FROM acto_clientes WHERE id_cliente = '". $id_cliente ."'";
 
         $this->modificarRegistros($query);
 
-
-
     }
-
-    
 
 }
 
-
-
 ?>
-

@@ -4,12 +4,12 @@ class EstadoscivilModel extends ModelBase {
 
     function getTodos(){
         
-        $query = "select    estadocivil.id_estadocivil, 
-                            estadocivil.nombre_estadocivil
+        $query = "select    estadoscivil.id_estadocivil, 
+                            estadoscivil.nombre_estadocivil
             	                 
-                        from estadocivil
+                        from estadoscivil
                         
-                        ORDER BY estadocivil.nombre_estadocivil";
+                        ORDER BY estadoscivil.nombre_estadocivil";
 
         $consulta = $this->consulta($query);
         return $consulta;
@@ -18,14 +18,14 @@ class EstadoscivilModel extends ModelBase {
     
     function getDatos($id_estadocivil){
         
-        $query = "select    estadocivil.id_estadocivil, 
-                            estadocivil.nombre_estadocivil
+        $query = "select    estadoscivil.id_estadocivil, 
+                            estadoscivil.nombre_estadocivil
             	                 
-                        from estadocivil
+                        from estadoscivil
                              
-                        where estadocivil.id_estadocivil = '".$id_estadocivil."'
+                        where estadoscivil.id_estadocivil = '".$id_estadocivil."'
                         
-                        ORDER BY estadocivil.nombre_estadocivil";
+                        ORDER BY estadoscivil.nombre_estadocivil";
         
         $consulta = $this->consulta($query);
         

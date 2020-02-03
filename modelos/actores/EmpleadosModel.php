@@ -4,32 +4,55 @@ class EmpleadosModel extends ModelBase {
   
     function getTodos() {
         
-        $query = "select 
-                    empleados.id_empleado, 
-                    empleados.dependencia_empleado, 
-                    empleados.documento_empleado, 
-                    empleados.tipodocumento_empleado, 
-                    empleados.nombres_empleado, 
-                    empleados.apellidos_empleado, 
-                    concat( empleados.nombres_empleado,' ',empleados.apellidos_empleado) as nombre_empleado,
-                    empleados.telefono_empleado, 
-                    empleados.celular_empleado, 
-                    empleados.correo_empleado, 
-                    empleados.direccion_empleado, 
-                    empleados.ciudad_empleado,
-                    empleados.sexo_empleado,
-                    empleados.estadocivil_empleado,
-                    empleados.fechanacimiento_empleado,
-                    empleados.lugarnacimiento_empleado,
-                    empleados.usuario_empleado,
-
-                    tiposdocumento.codigo_tipodocumento,
-
-                    dependencias.nombre_dependencia
+        $query = "select
+                acto_empleados.id_empleado, 
+                acto_empleados.tipodocumento_empleado,
+                acto_empleados.documento_empleado,
+                acto_empleados.nombres_empleado,
+                acto_empleados.apellidos_empleado,
+                concat( empleados.nombres_empleado,' ',empleados.apellidos_empleado) as nombre_empleado,
+                acto_empleados.direccionresidencia_empleado,
+                acto_empleados.direccioncorrespondencia_empleado,
+                acto_empleados.telefono_empleado,
+                acto_empleados.celular_empleado,
+                acto_empleados.correo_empleado,
+                acto_empleados.ciudad_empleado,
+                acto_empleados.pais_empleado,
+                acto_empleados.genero_empleado,
+                acto_empleados.estadocivil_empleado,
+                acto_empleados.hijos_empleado,
+                acto_empleados.fechanacimiento_empleado,
+                acto_empleados.educacion_empleado,
+                acto_empleados.ocupacion_empleado,
+                acto_empleados.estado_empleado,
+                acto_empleados.paginaweb_empleado,
+                acto_empleados.dependencia_empleado 
                 
-                    from empleados 
-                    left join tiposdocumento on empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
-                    left join dependencias on empleados.dependencia_empleado = dependencias.id_dependencia";
+                tiposdocumento.nombre_tipodocumento,
+
+                paises.nombre_pais,
+
+                generos.nombre_genero,
+
+                estadoscivil.nombre_estadocivil,
+
+                educaciones.nombre_educacion,
+
+                ocupaciones.nombre_ocupacion,
+
+                estados.nombre_estado,
+
+                actos_dependencias.nombre_dependencia,
+
+                from acto_empleados
+                left join tiposdocumento on empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
+                left join paises on empleados.pais_empleado = paises.id_pais       
+                left join generos on empleados.genero_empleado = generos.id_genero
+                left join estadoscivil on empleados.estadocivil_empleado = estadoscivil.id_estadocivil
+                left join educaciones on empleados.educacion_empleado = educaciones.id_educacion
+                left join ocupaciones on empleados.ocupacion_empleado = ocupaciones.id_ocupacion
+                left join estados on empleados.estado_empleado = estados.id_estado
+                left join actos_dependencias on empleados.dependencia_empleado = actos_dependencias.id_dependencia";
         
         $consulta = $this->consulta($query);
         return $consulta;       
@@ -38,32 +61,55 @@ class EmpleadosModel extends ModelBase {
 
     function getDatos($id_empleado) {
        
-        $query = "select 
-                    empleados.id_empleado, 
-                    empleados.dependencia_empleado, 
-                    empleados.documento_empleado, 
-                    empleados.tipodocumento_empleado, 
-                    empleados.nombres_empleado, 
-                    empleados.apellidos_empleado, 
-                    empleados.telefono_empleado, 
-                    empleados.celular_empleado, 
-                    empleados.correo_empleado, 
-                    empleados.direccion_empleado, 
-                    empleados.ciudad_empleado,
-                    empleados.sexo_empleado,
-                    empleados.estadocivil_empleado,
-                    empleados.fechanacimiento_empleado,
-                    empleados.lugarnacimiento_empleado,
-                    empleados.usuario_empleado,
+        $query = "select
+        acto_empleados.id_empleado, 
+        acto_empleados.tipodocumento_empleado,
+        acto_empleados.documento_empleado,
+        acto_empleados.nombres_empleado,
+        acto_empleados.apellidos_empleado,
+        concat( empleados.nombres_empleado,' ',empleados.apellidos_empleado) as nombre_empleado,
+        acto_empleados.direccionresidencia_empleado,
+        acto_empleados.direccioncorrespondencia_empleado,
+        acto_empleados.telefono_empleado,
+        acto_empleados.celular_empleado,
+        acto_empleados.correo_empleado,
+        acto_empleados.ciudad_empleado,
+        acto_empleados.pais_empleado,
+        acto_empleados.genero_empleado,
+        acto_empleados.estadocivil_empleado,
+        acto_empleados.hijos_empleado,
+        acto_empleados.fechanacimiento_empleado,
+        acto_empleados.educacion_empleado,
+        acto_empleados.ocupacion_empleado,
+        acto_empleados.estado_empleado,
+        acto_empleados.paginaweb_empleado,
+        acto_empleados.dependencia_empleado 
+        
+        tiposdocumento.nombre_tipodocumento,
 
-                    tiposdocumento.codigo_tipodocumento,
+        paises.nombre_pais,
 
-                    usuarios.nick_usuario,
-                    usuarios.password_usuario
-                
-                    from empleados 
-                        left join tiposdocumento on empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
-                        left join usuarios on empleados.usuario_empleado = usuarios.id_usuario
+        generos.nombre_genero,
+
+        estadoscivil.nombre_estadocivil,
+
+        educaciones.nombre_educacion,
+
+        ocupaciones.nombre_ocupacion,
+
+        estados.nombre_estado,
+
+        actos_dependencias.nombre_dependencia,
+
+        from acto_empleados
+        left join tiposdocumento on empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
+        left join paises on empleados.pais_empleado = paises.id_pais       
+        left join generos on empleados.genero_empleado = generos.id_genero
+        left join estadoscivil on empleados.estadocivil_empleado = estadoscivil.id_estadocivil
+        left join educaciones on empleados.educacion_empleado = educaciones.id_educacion
+        left join ocupaciones on empleados.ocupacion_empleado = ocupaciones.id_ocupacion
+        left join estados on empleados.estado_empleado = estados.id_estado
+        left join actos_dependencias on empleados.dependencia_empleado = actos_dependencias.id_dependencia
 
                     where empleados.id_empleado='".$id_empleado."'";
         
@@ -74,29 +120,55 @@ class EmpleadosModel extends ModelBase {
 
     function getEmpleadosLIKE($texto) {
        
-        $query = "select 
-                    empleados.id_empleado, 
-                    empleados.dependencia_empleado, 
-                    empleados.documento_empleado, 
-                    empleados.tipodocumento_empleado, 
-                    empleados.nombres_empleado, 
-                    empleados.apellidos_empleado, 
-                    empleados.telefono_empleado, 
-                    empleados.celular_empleado, 
-                    empleados.correo_empleado, 
-                    empleados.direccion_empleado, 
-                    empleados.ciudad_empleado,
-                    empleados.sexo_empleado,
-                    empleados.estadocivil_empleado,
-                    empleados.fechanacimiento_empleado,
-                    empleados.lugarnacimiento_empleado,
-                    empleados.usuario_empleado,
+        $query = "select
+        acto_empleados.id_empleado, 
+        acto_empleados.tipodocumento_empleado,
+        acto_empleados.documento_empleado,
+        acto_empleados.nombres_empleado,
+        acto_empleados.apellidos_empleado,
+        concat( empleados.nombres_empleado,' ',empleados.apellidos_empleado) as nombre_empleado,
+        acto_empleados.direccionresidencia_empleado,
+        acto_empleados.direccioncorrespondencia_empleado,
+        acto_empleados.telefono_empleado,
+        acto_empleados.celular_empleado,
+        acto_empleados.correo_empleado,
+        acto_empleados.ciudad_empleado,
+        acto_empleados.pais_empleado,
+        acto_empleados.genero_empleado,
+        acto_empleados.estadocivil_empleado,
+        acto_empleados.hijos_empleado,
+        acto_empleados.fechanacimiento_empleado,
+        acto_empleados.educacion_empleado,
+        acto_empleados.ocupacion_empleado,
+        acto_empleados.estado_empleado,
+        acto_empleados.paginaweb_empleado,
+        acto_empleados.dependencia_empleado 
+        
+        tiposdocumento.nombre_tipodocumento,
 
-                    tiposdocumento.codigo_tipodocumento
-                
-                    from empleados left join 
-                            tiposdocumento on 
-                            empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
+        paises.nombre_pais,
+
+        generos.nombre_genero,
+
+        estadoscivil.nombre_estadocivil,
+
+        educaciones.nombre_educacion,
+
+        ocupaciones.nombre_ocupacion,
+
+        estados.nombre_estado,
+
+        actos_dependencias.nombre_dependencia,
+
+        from acto_empleados
+        left join tiposdocumento on empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
+        left join paises on empleados.pais_empleado = paises.id_pais       
+        left join generos on empleados.genero_empleado = generos.id_genero
+        left join estadoscivil on empleados.estadocivil_empleado = estadoscivil.id_estadocivil
+        left join educaciones on empleados.educacion_empleado = educaciones.id_educacion
+        left join ocupaciones on empleados.ocupacion_empleado = ocupaciones.id_ocupacion
+        left join estados on empleados.estado_empleado = estados.id_estado
+        left join actos_dependencias on empleados.dependencia_empleado = actos_dependencias.id_dependencia
 
                     where   empleados.nombres_empleado LIKE '%".$texto."%' OR 
                             empleados.apellidos_empleado LIKE '%".$texto."%' OR
@@ -126,29 +198,55 @@ class EmpleadosModel extends ModelBase {
             $consulta_sexo = " " ;           
         }
 
-        $query = "select 
-                    empleados.id_empleado, 
-                    empleados.dependencia_empleado, 
-                    empleados.documento_empleado, 
-                    empleados.tipodocumento_empleado, 
-                    empleados.nombres_empleado, 
-                    empleados.apellidos_empleado, 
-                    empleados.telefono_empleado, 
-                    empleados.celular_empleado, 
-                    empleados.correo_empleado, 
-                    empleados.direccion_empleado, 
-                    empleados.ciudad_empleado,
-                    empleados.sexo_empleado,
-                    empleados.estadocivil_empleado,
-                    empleados.fechanacimiento_empleado,
-                    empleados.lugarnacimiento_empleado,
-                    empleados.usuario_empleado,
+        $query = "select
+        acto_empleados.id_empleado, 
+        acto_empleados.tipodocumento_empleado,
+        acto_empleados.documento_empleado,
+        acto_empleados.nombres_empleado,
+        acto_empleados.apellidos_empleado,
+        concat( empleados.nombres_empleado,' ',empleados.apellidos_empleado) as nombre_empleado,
+        acto_empleados.direccionresidencia_empleado,
+        acto_empleados.direccioncorrespondencia_empleado,
+        acto_empleados.telefono_empleado,
+        acto_empleados.celular_empleado,
+        acto_empleados.correo_empleado,
+        acto_empleados.ciudad_empleado,
+        acto_empleados.pais_empleado,
+        acto_empleados.genero_empleado,
+        acto_empleados.estadocivil_empleado,
+        acto_empleados.hijos_empleado,
+        acto_empleados.fechanacimiento_empleado,
+        acto_empleados.educacion_empleado,
+        acto_empleados.ocupacion_empleado,
+        acto_empleados.estado_empleado,
+        acto_empleados.paginaweb_empleado,
+        acto_empleados.dependencia_empleado 
+        
+        tiposdocumento.nombre_tipodocumento,
 
-                    tiposdocumento.codigo_tipodocumento
-                
-                    from empleados left join 
-                            tiposdocumento on 
-                            empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
+        paises.nombre_pais,
+
+        generos.nombre_genero,
+
+        estadoscivil.nombre_estadocivil,
+
+        educaciones.nombre_educacion,
+
+        ocupaciones.nombre_ocupacion,
+
+        estados.nombre_estado,
+
+        actos_dependencias.nombre_dependencia,
+
+        from acto_empleados
+        left join tiposdocumento on empleados.tipodocumento_empleado = tiposdocumento.id_tipodocumento
+        left join paises on empleados.pais_empleado = paises.id_pais       
+        left join generos on empleados.genero_empleado = generos.id_genero
+        left join estadoscivil on empleados.estadocivil_empleado = estadoscivil.id_estadocivil
+        left join educaciones on empleados.educacion_empleado = educaciones.id_educacion
+        left join ocupaciones on empleados.ocupacion_empleado = ocupaciones.id_ocupacion
+        left join estados on empleados.estado_empleado = estados.id_estado
+        left join actos_dependencias on empleados.dependencia_empleado = actos_dependencias.id_dependencia
 
                     where empleados.id_empleado != '' ".$consulta_dependencia.$consulta_sexo;
         

@@ -39,18 +39,26 @@ class ClientesControlador extends ControllerBase {
         $clientesModel = new ClientesModel();                      
 
         $resp = $clientesModel->insertarCliente(
-            $_POST["nombre"], 
             $_POST["tipodocumento_cliente"], 
-            $_POST["documento"], 
-            $_POST["contacto"], 
-            $_POST["direccion1"], 
-            $_POST["direccion2"], 
-            $_POST["telefono"], 
-            $_POST["celular"], 
-            $_POST["correo1"], 
-            $_POST["correo2"], 
-            $_POST["ciudad"], 
-            $_POST["precio_cliente"]
+            $_POST["documento_cliente"], 
+            $_POST["nombres_cliente"], 
+            $_POST["apellidos_cliente"], 
+            $_POST["direccionresidencia_cliente"], 
+            $_POST["direccioncorrespondencia_cliente"],
+            $_POST["telefono_cliente"], 
+            $_POST["celular_cliente"], 
+            $_POST["correo_cliente"], 
+            $_POST["ciudad_cliente"], 
+            $_POST["pais_cliente"],
+            $_POST["genero_cliente"],
+            $_POST["estadocivil_cliente"],
+            $_POST["hijos_cliente"],
+            $_POST["fechanacimiento_cliente"],
+            $_POST["educacion_cliente"],
+            $_POST["ocupacion_cliente"],
+            $_POST["estado_cliente"],
+            $_POST["paginaweb_cliente"],
+            $_POST["tipo_cliente"]
         );        
 
         if( $resp != 0 ){
@@ -60,36 +68,6 @@ class ClientesControlador extends ControllerBase {
         }      
         
     }
-    
-
-    public function insertar2() {      
-
-        $this->model->cargar("ClientesModel.php", "configuracion");
-        $ClientesModel = new ClientesModel();     
-
-        $resp = $ClientesModel->insertarCliente(
-            $_POST["nombre_cliente"], 
-            $_POST["tipodocumento_cliente"], 
-            $_POST["documento_cliente"], 
-            $_POST["contacto_cliente"], 
-            $_POST["direccion1_cliente"], 
-            $_POST["direccion2_cliente"], 
-            $_POST["telefono_cliente"], 
-            $_POST["celular_cliente"], 
-            $_POST["correo1_cliente"], 
-            $_POST["correo2_cliente"],
-            $_POST["ciudad_cliente"], 
-            $_POST["precio_cliente"]
-        );   
-        
-
-        $datos = $ClientesModel->getDatosCliente($resp);                
-
-        $array[] = array('id'=>$datos['ID_CLIENTE'],'nombre'=>$datos['NOMBRE_CLIENTE'],'direccion1'=>$datos['DIRECCION1_CLIENTE'],'direccion2'=>$datos['DIRECCION2_CLIENTE'],'telefono'=>$datos['TELEFONO_CLIENTE'],'celular'=>$datos['CELULAR_CLIENTE'],'correo1'=>$datos['CORREO1_CLIENTE'],'correo2'=>$datos['CORREO2_CLIENTE'],'ciudad'=>$datos['CIUDAD_CLIENTE']);
-      
-        echo json_encode($array);         
-
-    }
         
 
     public function guardar() {
@@ -98,18 +76,27 @@ class ClientesControlador extends ControllerBase {
         $clientesModel = new ClientesModel();                
 
          $resp = $clientesModel->editarCliente(
-                $_POST["id"], 
-                $_POST["nombre"], 
-                $_POST["documento"], 
-                $_POST["contacto"], 
-                $_POST["direccion1"], 
-                $_POST["direccion2"], 
-                $_POST["telefono"], 
-                $_POST["celular"], 
-                $_POST["correo1"], 
-                $_POST["correo2"], 
-                $_POST["ciudad"], 
-                $_POST["precio_cliente"]
+                $_POST["id_cliente"], 
+                $_POST["tipodocumento_cliente"], 
+                $_POST["documento_cliente"], 
+                $_POST["nombres_cliente"], 
+                $_POST["apellidos_cliente"], 
+                $_POST["direccionresidencia_cliente"], 
+                $_POST["direccioncorrespondencia_cliente"],
+                $_POST["telefono_cliente"], 
+                $_POST["celular_cliente"], 
+                $_POST["correo_cliente"], 
+                $_POST["ciudad_cliente"], 
+                $_POST["pais_cliente"],
+                $_POST["genero_cliente"],
+                $_POST["estadocivil_cliente"],
+                $_POST["hijos_cliente"],
+                $_POST["fechanacimiento_cliente"],
+                $_POST["educacion_cliente"],
+                $_POST["ocupacion_cliente"],
+                $_POST["estado_cliente"],
+                $_POST["paginaweb_cliente"],
+                $_POST["tipo_cliente"]
         );     
 
          if( $resp != 0 ){			     
@@ -122,9 +109,7 @@ class ClientesControlador extends ControllerBase {
 
         }          
 
-    }    
-
-     
+    }         
 
     public function eliminar() {        
 
@@ -135,11 +120,8 @@ class ClientesControlador extends ControllerBase {
 
         echo "1";                
 
-    }       
-
-    
+    }           
 
  }
 
 ?>
-

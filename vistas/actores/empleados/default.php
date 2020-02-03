@@ -1,48 +1,4 @@
-<script type="text/javascript">
-
-    function nuevo_empleado() {
-
-        abrirVentanaContenedor(
-            'administracion', 
-            'Empleados', 
-            'nuevo', 
-            '', 
-            ''
-        );
-
-    }
-
-    function editar_empleado(id_empleado) {
-
-        abrirVentanaContenedor(
-            'administracion',
-            'Empleados',
-            'editar',
-            'id_empleado=' + id_empleado,
-            ''
-        );
-
-    }
-
-    function eliminar_empleado(id_empleado) {
-
-        mensaje_confirmar("¿Está seguro de eliminar el Empleado?", "eliminar_empleado2(" + id_empleado + "); ");
-
-    }
-
-    function eliminar_empleado2(id_empleado) {
-
-        ejecutarAccion(
-            'administracion',
-            'Empleados',
-            'eliminar',
-            "id_empleado=" + id_empleado,
-            ' mensaje_alertas("success", "Empleado Eliminado con Éxito", "center"); cargar_empleados();'
-        );
-
-    }
-
-</script>
+<script type="text/javascript" src="js/vistas/actores/empleados/default.js"></script>
 
 
 <div class="row">
@@ -63,7 +19,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -85,7 +40,7 @@
                             
                             echo "<td>" . $items['codigo_tipodocumento']." ".$items['documento_empleado'] . "</td>";
                             echo "<td>" . $items['nombre_dependencia'] . "</td>";
-                            echo "<td>" . $items['nombres_empleado']."  ".$items['apellidos_empleado'] . "</td>";
+                            echo "<td>" . $items['nombre_empleado'] . "</td>";
 
                             echo "<td><a href='#'><i onclick='editar_empleado(" . $items['id_empleado'] . ");' 
                                     class='fas fa-edit'></i></a></td>";

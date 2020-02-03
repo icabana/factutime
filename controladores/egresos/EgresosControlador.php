@@ -19,18 +19,12 @@ class EgresosControlador extends ControllerBase {
         $this->model->cargar("EgresosModel.php", "egresos");
         $EgresosModel = new EgresosModel();         
 
-        $this->model->cargar("TegresosModel.php", "configuracion");
-        $TegresosModel = new TegresosModel();         
-        $tipos_egresos = $TegresosModel->getTodosTegresos();
+        $this->model->cargar("TiposModel.php", "configuracion");
+        $TiposModel = new TiposModel();         
+        $tipos_egresos = $TiposModel->getTodosTipos();
 
-        $this->model->cargar("UsuarioModel.php", "configuracion");
-        $UsuarioModel = new UsuarioModel();
-
-        $this->model->cargar("ClientesModel.php", "configuracion");
-        $ClientesModel = new ClientesModel();     
-
-        $clientes = $ClientesModel->getTodosClientes();
-        $roles = $UsuarioModel->getTodosRoles();
+        $this->model->cargar("ProveedoresModel.php", "configuracion");
+        $ProveedoresModel = new ProveedoresModel();   
         
         include 'vistas/egresos/insertar.php';
 
@@ -41,24 +35,18 @@ class EgresosControlador extends ControllerBase {
     public function editar(){
 
         $this->model->cargar("EgresosModel.php", "egresos");
-        $EgresosModel = new EgresosModel();         
+        $EgresosModel = new EgresosModel();    
 
-        $this->model->cargar("UsuarioModel.php", "configuracion");
-        $UsuarioModel = new UsuarioModel();         
-
-        $this->model->cargar("ClientesModel.php", "configuracion");
-        $ClientesModel = new ClientesModel();         
-
-        $clientes = $ClientesModel->getTodosClientes();     
-        $roles = $UsuarioModel->getTodosRoles();        
+        $this->model->cargar("ProveedoresModel.php", "configuracion");
+        $ProveedoresModel = new ProveedoresModel();   
 
         $egreso = $EgresosModel->getDatosEgreso($_POST['id_egreso']);
-        $consecutivo_bd = $EgresosModel->getConsecutivo();
+        $consecutivo_bd = $EgresosModel->getConsecutivo();        
         
-        
-        $this->model->cargar("TegresosModel.php", "configuracion");
-        $TegresosModel = new TegresosModel();         
-        $tipos_egresos = $TegresosModel->getTodosTegresos();
+        $this->model->cargar("TiposModel.php", "configuracion");
+        $TiposModel = new TiposModel();      
+
+        $tipos = $TiposModel->getTodosTipos();
         
         $tipo = $_POST['tipo'];
         
@@ -83,7 +71,18 @@ class EgresosControlador extends ControllerBase {
             $consecutivo = $params->valor('CONSECUTIVO_EGRESO');
         }
 
-        $resp = $EgresosModel->guardarEgreso($_POST["fecha"], $_POST["proveedor"], $_POST["vendedor"], $_POST["valor"], $_POST["tipo_egreso"], $_POST["observaciones"], $_POST["formapago"], $_POST["numtransaccion"], $consecutivo + 1);   
+        $resp = $EgresosModel->guardarEgreso(
+            $consecutivo + 1,
+            $_POST["tipo_egreso"], 
+            $_POST["fecha_egreso"], 
+            $_POST["proveedor_egreso"], 
+            $_POST["valor_egreso"], 
+            $_POST["concepto_egreso"], 
+            $_POST["numtransaccion_egreso"],
+            $_POST["numcheque_egreso"],
+            $_POST["banco_egreso"]
+            
+        );   
             
         if( $resp != 0 ){
             echo 1;
@@ -101,7 +100,16 @@ class EgresosControlador extends ControllerBase {
 
         $params = Parametros::singleton();          
 
-        $resp = $EgresosModel->editarEgreso($_POST["id_egreso"], $_POST["fecha"], $_POST["cliente"], $_POST["vendedor"], $_POST["valor"], $_POST["tipo_egreso"], $_POST["observaciones"], $_POST["formapago"], $_POST["numtransaccion"]);  
+        $resp = $EgresosModel->editarEgreso(
+                $_POST["tipo_egreso"], 
+                $_POST["fecha_egreso"], 
+                $_POST["proveedor_egreso"], 
+                $_POST["valor_egreso"], 
+                $_POST["concepto_egreso"], 
+                $_POST["numtransaccion_egreso"],
+                $_POST["numcheque_egreso"],
+                $_POST["banco_egreso"]
+        );  
 
         if( $resp != 0 ){
             echo 1;
@@ -123,77 +131,6 @@ class EgresosControlador extends ControllerBase {
 
     }    
 
-
-    public function buscarProducto() {
-
-        $this->model->cargar("ProductosModel.php", "configuracion");
-        $ProductosModel = new ProductosModel();
-
-        $this->model->cargar("ClientesModel.php", "configuracion");
-        $ClientesModel = new ClientesModel();
-
-        $datos_cliente = $ClientesModel->getDatosCliente($_POST['cliente']);
-
-        $productos = $ProductosModel->getProductosLIKE($_POST['texto']);        
-
-        $tabla_productos = "<table id='tabla_productos'  class='table table-hover'>
-
-    
-
-    <thead>
-
-        <tr>         
-
-                        
-
-            <th><center>CODIGO</center></th> 
-
-            <th><center>NOMBRE</center></th> 
-
-                       
-
-        </tr>
-
-    </thead>
-
-    <tbody>";
-
-         
-
-        foreach ($productos as $clave => $valor) {
-            
-
-            $tabla_productos .= "<tr onclick='seleccionar_producto(" . $valor['ID_PRODUCTO'] . ", \"" . ($valor['CODIGO_PRODUCTO']) . "\", \"" . (utf8_encode($valor['NOMBRE_PRODUCTO'])) . "\", \"" . (utf8_encode($valor['DESCUENTO_PRODUCTO'])) . "\", \"" . (utf8_encode($valor['IMPUESTO_PRODUCTO'])) . "\", \"" . (utf8_encode($valor['PRECIO1_PRODUCTO'])) . "\");'>";  
-
-
-
-            $tabla_productos .= "<td><strong>" . utf8_encode($valor['CODIGO_PRODUCTO']) . "</strong></td>";
-
-            $tabla_productos .= "<td><strong>" . utf8_encode($valor['NOMBRE_PRODUCTO']) . "</strong></td>";
-
-
-
-            $tabla_productos .= "</tr>";
-
-            
-
-        }
-
-        
-
-       $tabla_productos .= "
-
-</tbody></table>";
-
-        
-
-        echo $tabla_productos;
-
-        
-
-      }
-    
-      
 
     public function buscarProveedor() {
 
@@ -239,45 +176,33 @@ class EgresosControlador extends ControllerBase {
     } 
        
 
-     public function imprimirEgreso(){
+    public function imprimirEgreso(){
 
         $this->model->cargar("EgresosModel.php", "egresos");
         $EgresosModel = new EgresosModel();
 
         $this->model->cargar("UsuarioModel.php", "configuracion");
-        $UsuarioModel = new UsuarioModel();
-        
+        $UsuarioModel = new UsuarioModel();        
 
         $consecutivo_bd = $EgresosModel->getConsecutivo();
 
-        $egreso = $EgresosModel->getDatosEgreso($_POST['id_egreso']);
-
-        
+        $egreso = $EgresosModel->getDatosEgreso($_POST['id_egreso']);        
         
         $valor_en_letras = $this->convertir($egreso['VALOR_EGRESO']);
         
-        include("vistas/egresos/egreso.php");   
+        include("vistas/egresos/egreso.php");                    
 
-                 
+        $dirPdf = "archivos/pdf_egreso".$_POST['id_egreso'].".pdf";          
 
-        $dirPdf = "archivos/pdf_egreso".$_POST['id_egreso'].".pdf";
+        $this->pdf->Output(''.$dirPdf.'');            
 
-          
-
-        $this->pdf->Output(''.$dirPdf.'');
-
-            
-
-        echo "urlRuta=".$dirPdf;
-
-          
+        echo "urlRuta=".$dirPdf;          
 
     }
 
         
 
-     public function imprimirEgreso2(){
-         
+     public function imprimirEgreso2(){         
 
         $this->model->cargar("EgresosModel.php", "egresos");
         $EgresosModel = new EgresosModel();        
@@ -288,7 +213,6 @@ class EgresosControlador extends ControllerBase {
         $consecutivo_bd = $EgresosModel->getConsecutivo();       
 
         $egreso = $EgresosModel->getDatosEgreso($_POST['id_egreso']);
-
         
         $valor_en_letras = $this->convertir($egreso['VALOR_EGRESO']);
         
@@ -300,10 +224,7 @@ class EgresosControlador extends ControllerBase {
             
         echo "urlRuta=".$dirPdf;
 
-    }
-
-       
-
+    }     
     
 
      public function imprimirEgreso3(){
@@ -328,11 +249,8 @@ class EgresosControlador extends ControllerBase {
             
         echo "urlRuta=".$dirPdf;
 
-    }
-
-    
+    }    
 
  }
 
 ?>
-

@@ -40,13 +40,26 @@ class ProveedoresControlador extends ControllerBase {
         $ProveedoresModel = new ProveedoresModel();                      
 
         $resp = $ProveedoresModel->insertarProveedor(
-            $_POST["nombre"], 
-            $_POST["tipodocumento"], 
-            $_POST["documento"], 
-            $_POST["direccion"], 
-            $_POST["telefono"], 
-            $_POST["correo"], 
-            $_POST["regimen"]
+            $_POST["tipodocumento_proveedor"], 
+            $_POST["documento_proveedor"], 
+            $_POST["nombres_proveedor"], 
+            $_POST["apellidos_proveedor"], 
+            $_POST["direccionresidencia_proveedor"], 
+            $_POST["direccioncorrespondencia_proveedor"],
+            $_POST["telefono_proveedor"], 
+            $_POST["celular_proveedor"], 
+            $_POST["correo_proveedor"], 
+            $_POST["ciudad_proveedor"], 
+            $_POST["pais_proveedor"],
+            $_POST["genero_proveedor"],
+            $_POST["estadocivil_proveedor"],
+            $_POST["hijos_proveedor"],
+            $_POST["fechanacimiento_proveedor"],
+            $_POST["educacion_proveedor"],
+            $_POST["ocupacion_proveedor"],
+            $_POST["estado_proveedor"],
+            $_POST["paginaweb_proveedor"],
+            $_POST["tipo_proveedor"]
         );       
         
 
@@ -65,16 +78,30 @@ class ProveedoresControlador extends ControllerBase {
         $proveedoresModel = new ProveedoresModel();                
 
          $resp = $proveedoresModel->editarProveedor(
-                   $_POST["id"], 
-                   $_POST["nombre"], 
-                   $_POST["documento"], 
-                   $_POST["direccion"], 
-                   $_POST["telefono"],
-                   $_POST["correo"], 
-                   $_POST["regimen"]
-            );
+                $_POST["id_proveedor"], 
+                $_POST["tipodocumento_proveedor"], 
+                $_POST["documento_proveedor"], 
+                $_POST["nombres_proveedor"], 
+                $_POST["apellidos_proveedor"], 
+                $_POST["direccionresidencia_proveedor"], 
+                $_POST["direccioncorrespondencia_proveedor"],
+                $_POST["telefono_proveedor"], 
+                $_POST["celular_proveedor"], 
+                $_POST["correo_proveedor"], 
+                $_POST["ciudad_proveedor"], 
+                $_POST["pais_proveedor"],
+                $_POST["genero_proveedor"],
+                $_POST["estadocivil_proveedor"],
+                $_POST["hijos_proveedor"],
+                $_POST["fechanacimiento_proveedor"],
+                $_POST["educacion_proveedor"],
+                $_POST["ocupacion_proveedor"],
+                $_POST["estado_proveedor"],
+                $_POST["paginaweb_proveedor"],
+                $_POST["tipo_proveedor"]
+        );
      
-         if( $resp != 0 ){			     
+        if( $resp != 0 ){			     
 
              echo 1;             
 
@@ -96,11 +123,8 @@ class ProveedoresControlador extends ControllerBase {
 
         echo "1";                
 
-    }    
- 
-    
+    }        
 
  }
 
 ?>
-

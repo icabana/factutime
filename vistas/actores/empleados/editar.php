@@ -1,36 +1,4 @@
-<script type="text/javascript">
-
-  function editar_empleado() {
-
-      if(!validar_requeridos()){
-          return 0;
-      }
-
-      var datos = $('#formEmpleados').serialize();
-
-      ejecutarAccion(
-        'administracion',
-        'Empleados',
-        'guardar',
-        datos,
-        'editar_empleado2(data)'
-      );
-
-  }
-
-  function editar_empleado2(data) {
-
-      if (data == 1) {
-        mensaje_alertas("success", "Empleado Editado Exitosamente", "center");
-        cargar_empleados();
-      } else {
-        mensaje_alertas("error", "El Documento o Correo ya se encuentra registrado", "center");
-      }
-
-  }
-
-
-</script>
+<script type="text/javascript" src="js/vistas/actores/empleados/editar.js"></script>
 
 <?php
 $froms = new Formularios();
