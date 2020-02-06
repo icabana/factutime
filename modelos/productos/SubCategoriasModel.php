@@ -21,7 +21,7 @@ class SubCategoriasModel extends ModelBase {
 
     function getDatos($id_subcategoria) {       
 
-     $query = "select 	
+        $query = "select 	
 		        prod_subcategorias.id_subcategoria, 
                 prod_subcategorias.categoria_subcategoria,
                 prod_subcategorias.nombre_subcategoria                
@@ -30,7 +30,7 @@ class SubCategoriasModel extends ModelBase {
 
                 where prod_subcategorias.id_subcategoria='".$id_subcategoria."'";        
 
-         $consulta = $this->consulta($query);
+        $consulta = $this->consulta($query);
 
         return $consulta[0];    
         
@@ -39,8 +39,10 @@ class SubCategoriasModel extends ModelBase {
 
     function insertar($categoria_subcategoria, $nombre_subcategoria) {                
 
-         $query = "INSERT INTO prod_subcategorias (categoria_subcategoria, nombre_subcategoria)
-		VALUES('".utf8_decode(mb_strtoupper($categoria_subcategoria))."', '". utf8_decode(mb_strtoupper($nombre_subcategoria))."');";
+        $query = "INSERT INTO prod_subcategorias (categoria_subcategoria, nombre_subcategoria)
+
+                VALUES('".utf8_decode(mb_strtoupper($categoria_subcategoria))."', 
+                '". utf8_decode(mb_strtoupper($nombre_subcategoria))."');";
      
         return $this->crear_ultimo_id($query);              
 
@@ -49,7 +51,11 @@ class SubCategoriasModel extends ModelBase {
 
     function editar($id_subcategoria, $categoria_subcategoria, $nombre_subcategoria) {        
 
-       $query = "UPDATE prod_subcategorias  SET categoria_subcategoria = '".utf8_decode(mb_strtoupper($categoria_subcategoria))."', nombre_subcategoria = '".utf8_decode(mb_strtoupper($nombre_subcategoria))."'
+       $query = "UPDATE prod_subcategorias  
+       
+       SET categoria_subcategoria = '".utf8_decode(mb_strtoupper($categoria_subcategoria))."', 
+       
+       nombre_subcategoria = '".utf8_decode(mb_strtoupper($nombre_subcategoria))."'
          
         WHERE id_subcategoria = '" . $id_subcategoria . "'";       
 

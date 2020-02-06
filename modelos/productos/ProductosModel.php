@@ -1,1 +1,275 @@
-<?phpclass ProductosModel extends ModelBase {      function getTodosProductos() {             $query = "select 			pro_productos.ID_PRODUCTO,                 pro_productos.CODIGO_PRODUCTO,                pro_productos.NOMBRE_PRODUCTO,                pro_productos.PRECIO1_PRODUCTO,                pro_productos.PRECIO2_PRODUCTO,                pro_productos.PRECIO3_PRODUCTO,                pro_productos.PRECIO4_PRODUCTO,                pro_productos.TIPO_PRODUCTO,                pro_productos.INICIAL_PRODUCTO,                pro_productos.ACTUAL_PRODUCTO,                pro_productos.IMPUESTO_PRODUCTO,                pro_productos.CATEGORIA_PRODUCTO,                pro_productos.SUBCATEGORIA_PRODUCTO,                pro_productos.BODEGA_PRODUCTO,                pro_productos.UNIDADVENTA_PRODUCTO,                pro_productos.TERMINO_PRODUCTO                                from pro_productos" ;                        $consulta = $this->consulta($query);               return $consulta;                          }      function getTodosProductosPromociones() {             $query = "select 			pro_productos.ID_PRODUCTO,                 pro_productos.CODIGO_PRODUCTO,                pro_productos.NOMBRE_PRODUCTO,                pro_productos.PRECIO1_PRODUCTO,                pro_productos.PRECIO2_PRODUCTO,                pro_productos.PRECIO3_PRODUCTO,                pro_productos.PRECIO4_PRODUCTO,                pro_productos.TIPO_PRODUCTO,                pro_productos.INICIAL_PRODUCTO,                pro_productos.ACTUAL_PRODUCTO,                pro_productos.IMPUESTO_PRODUCTO,                pro_productos.CATEGORIA_PRODUCTO,                pro_productos.SUBCATEGORIA_PRODUCTO,                pro_productos.BODEGA_PRODUCTO,                pro_productos.UNIDADVENTA_PRODUCTO,                pro_productos.TERMINO_PRODUCTO                                from pro_productos                                where pro_productos.DESCUENTO_PRODUCTO != 0 and pro_productos.DESCUENTO_PRODUCTO != ''" ;                        $consulta = $this->consulta($query);               return $consulta;                          }          function getProductosLIKE($texto) {             $query = "select 			pro_productos.ID_PRODUCTO,                 pro_productos.CODIGO_PRODUCTO,                pro_productos.NOMBRE_PRODUCTO,                pro_productos.PRECIO1_PRODUCTO,                pro_productos.PRECIO2_PRODUCTO,                pro_productos.PRECIO3_PRODUCTO,                pro_productos.PRECIO4_PRODUCTO,                pro_productos.TIPO_PRODUCTO,                pro_productos.INICIAL_PRODUCTO,                pro_productos.ACTUAL_PRODUCTO,                pro_productos.IMPUESTO_PRODUCTO,                pro_productos.CATEGORIA_PRODUCTO,                pro_productos.SUBCATEGORIA_PRODUCTO,                pro_productos.BODEGA_PRODUCTO,                pro_productos.UNIDADVENTA_PRODUCTO,                pro_productos.TERMINO_PRODUCTO                                from pro_productos                                where pro_productos.NOMBRE_PRODUCTO LIKE '%".$texto."%'                        UNION     select 			pro_productos.ID_PRODUCTO,                 pro_productos.CODIGO_PRODUCTO,                pro_productos.NOMBRE_PRODUCTO,                pro_productos.PRECIO1_PRODUCTO,                pro_productos.PRECIO2_PRODUCTO,                pro_productos.PRECIO3_PRODUCTO,                pro_productos.PRECIO4_PRODUCTO,                pro_productos.TIPO_PRODUCTO,                pro_productos.INICIAL_PRODUCTO,                pro_productos.ACTUAL_PRODUCTO,                pro_productos.IMPUESTO_PRODUCTO,                pro_productos.CATEGORIA_PRODUCTO,                pro_productos.SUBCATEGORIA_PRODUCTO,                pro_productos.BODEGA_PRODUCTO,                pro_productos.UNIDADVENTA_PRODUCTO,                pro_productos.TERMINO_PRODUCTO                                from pro_productos                                where pro_productos.CODIGO_PRODUCTO LIKE '%".$texto."%'                    " ;                        $consulta = $this->consulta($query);               return $consulta;                          }        function getDatosProducto($ID_PRODUCTO) {            $query = "select 			pro_productos.ID_PRODUCTO,                 pro_productos.CODIGO_PRODUCTO,                pro_productos.NOMBRE_PRODUCTO,                pro_productos.PRECIO1_PRODUCTO,                pro_productos.PRECIO2_PRODUCTO,                pro_productos.PRECIO3_PRODUCTO,                pro_productos.PRECIO4_PRODUCTO,                pro_productos.TIPO_PRODUCTO,                pro_productos.INICIAL_PRODUCTO,                pro_productos.ACTUAL_PRODUCTO,                pro_productos.IMPUESTO_PRODUCTO,                pro_productos.CATEGORIA_PRODUCTO,                pro_productos.SUBCATEGORIA_PRODUCTO,                pro_productos.BODEGA_PRODUCTO,                pro_productos.UNIDADVENTA_PRODUCTO,                                pro_productos.TERMINO_PRODUCTO                                from pro_productos                      where pro_productos.ID_PRODUCTO='".$ID_PRODUCTO."'";                 $consulta = $this->consulta($query);        return $consulta[0];                }    function insertarProducto($CODIGO_PRODUCTO, $NOMBRE_PRODUCTO, $PRECIO1_PRODUCTO) {         $query = "INSERT INTO pro_productos (CODIGO_PRODUCTO, NOMBRE_PRODUCTO, PRECIO1_PRODUCTO)		   VALUES('".utf8_decode($CODIGO_PRODUCTO)."', '". utf8_decode($NOMBRE_PRODUCTO)."', '". $PRECIO1_PRODUCTO."');";        return $this->crear_ultimo_id($query);           }        function editarProducto($ID_PRODUCTO, $CODIGO_PRODUCTO, $NOMBRE_PRODUCTO, $PRECIO1_PRODUCTO) {       $query = "UPDATE pro_productos  SET CODIGO_PRODUCTO = '".utf8_decode($CODIGO_PRODUCTO)."', NOMBRE_PRODUCTO = '".utf8_decode($NOMBRE_PRODUCTO)."', PRECIO1_PRODUCTO = '".$PRECIO1_PRODUCTO."'        WHERE ID_PRODUCTO = '" . $ID_PRODUCTO . "'";       return $this->modificarRegistros($query);    }    function eliminarProducto($ID_PRODUCTO) {        $query = "DELETE FROM pro_productos WHERE ID_PRODUCTO = '". $ID_PRODUCTO ."'";        $this->modificarRegistros($query);    }                        function eliminarPromocion($ID_PRODUCTO) {       $query = "UPDATE pro_productos  SET DESCUENTO_PRODUCTO = '0'        WHERE ID_PRODUCTO = '" . $ID_PRODUCTO . "'";       return $this->modificarRegistros($query);    }            }?>
+<?php
+
+class ProductosModel extends ModelBase {  
+
+    function getTodos() {        
+
+        $query = "
+        
+            select 	
+        
+                prod_productos.id_producto, 
+                prod_productos.codigo_producto,
+                prod_productos.codigobarra_producto,
+                prod_productos.categoria_producto,
+                prod_productos.subcategoria_producto,
+                prod_productos.nombre_producto,
+                prod_productos.descripcion_producto,
+                prod_productos.marca_producto,
+                prod_productos.modelo_producto,
+                prod_productos.unidad_producto,
+                prod_productos.precioxunidad_producto,
+                prod_productos.vencimiento_producto,
+                prod_productos.estado_producto,
+                
+                prod_categorias.nombre_categoria,
+                
+                prod_subcategorias.nombre_subcategoria,
+                
+                unidades.nombre_unidad,
+
+                estados.nombre_estado
+
+                from prod_productos
+                    left join prod_categorias on prod_productos.categoria_producto = prod_categorias.id_categoria
+                    left join prod_subcategorias on prod_productos.subcategoria_producto = prod_subcategorias.id_subcategoria
+                    left join unidades on prod_productos.unidad_producto = unidades.id_unidad
+                    left join estados on prod_productos.estado_producto = estados.id_estado
+                    " ;
+
+        
+
+                $consulta = $this->consulta($query);
+
+               return $consulta;       
+
+               
+
+    }  
+
+    function getTodosProductosPromociones() {
+       
+        $query = "
+            select 	
+        
+                prod_productos.id_producto, 
+                prod_productos.codigo_producto,
+                prod_productos.codigobarra_producto,
+                prod_productos.categoria_producto,
+                prod_productos.subcategoria_producto,
+                prod_productos.nombre_producto,
+                prod_productos.descripcion_producto,
+                prod_productos.marca_producto,
+                prod_productos.modelo_producto,
+                prod_productos.unidad_producto,
+                prod_productos.precioxunidad_producto,
+                prod_productos.vencimiento_producto,
+                prod_productos.estado_producto,
+                
+                prod_categorias.nombre_categoria,
+                
+                prod_subcategorias.nombre_subcategoria,
+                
+                unidades.nombre_unidad,
+
+                estados.nombre_estado
+
+                from prod_productos
+                    left join prod_categorias on prod_productos.categoria_producto = prod_categorias.id_categoria
+                    left join prod_subcategorias on prod_productos.subcategoria_producto = prod_subcategorias.id_subcategoria
+                    left join unidades on prod_productos.unidad_producto = unidades.id_unidad
+                    left join estados on prod_productos.estado_producto = estados.id_estado
+                    
+                where prod_productos.DESCUENTO_PRODUCTO != 0 and prod_productos.DESCUENTO_PRODUCTO != ''" ;
+    
+            $consulta = $this->consulta($query);
+
+            return $consulta;       
+   
+
+    }    
+  
+
+    function getProductosLIKE($texto) {
+
+
+     $query = "select 	
+        
+        prod_productos.id_producto, 
+        prod_productos.codigo_producto,
+        prod_productos.codigobarra_producto,
+        prod_productos.categoria_producto,
+        prod_productos.subcategoria_producto,
+        prod_productos.nombre_producto,
+        prod_productos.descripcion_producto,
+        prod_productos.marca_producto,
+        prod_productos.modelo_producto,
+        prod_productos.unidad_producto,
+        prod_productos.precioxunidad_producto,
+        prod_productos.vencimiento_producto,
+        prod_productos.estado_producto,
+        
+        prod_categorias.nombre_categoria,
+        
+        prod_subcategorias.nombre_subcategoria,
+        
+        unidades.nombre_unidad,
+
+        estados.nombre_estado
+
+        from prod_productos
+            left join prod_categorias on prod_productos.categoria_producto = prod_categorias.id_categoria
+            left join prod_subcategorias on prod_productos.subcategoria_producto = prod_subcategorias.id_subcategoria
+            left join unidades on prod_productos.unidad_producto = unidades.id_unidad
+            left join estados on prod_productos.estado_producto = estados.id_estado
+
+        where prod_productos.NOMBRE_PRODUCTO LIKE '%".$texto."%'" ;
+
+        $consulta = $this->consulta($query);
+
+        return $consulta;                 
+
+    }  
+  
+
+    function getDatosProducto($id_producto) {
+
+     $query = "
+     
+     select 	
+        
+        prod_productos.id_producto, 
+        prod_productos.codigo_producto,
+        prod_productos.codigobarra_producto,
+        prod_productos.categoria_producto,
+        prod_productos.subcategoria_producto,
+        prod_productos.nombre_producto,
+        prod_productos.descripcion_producto,
+        prod_productos.marca_producto,
+        prod_productos.modelo_producto,
+        prod_productos.unidad_producto,
+        prod_productos.precioxunidad_producto,
+        prod_productos.vencimiento_producto,
+        prod_productos.estado_producto,
+        
+        prod_categorias.nombre_categoria,
+        
+        prod_subcategorias.nombre_subcategoria,
+        
+        unidades.nombre_unidad,
+
+        estados.nombre_estado
+
+        from prod_productos
+            left join prod_categorias on prod_productos.categoria_producto = prod_categorias.id_categoria
+            left join prod_subcategorias on prod_productos.subcategoria_producto = prod_subcategorias.id_subcategoria
+            left join unidades on prod_productos.unidad_producto = unidades.id_unidad
+            left join estados on prod_productos.estado_producto = estados.id_estado
+      
+
+        where prod_productos.id_producto='".$id_producto."'";        
+
+        $consulta = $this->consulta($query);
+
+        return $consulta[0];   
+
+    }
+
+
+    function insertarProducto(                                 
+                                $codigo_producto,
+                                $codigobarra_producto,
+                                $categoria_producto,
+                                $subcategoria_producto,
+                                $nombre_producto,
+                                $descripcion_producto,
+                                $marca_producto,
+                                $modelo_producto,
+                                $unidad_producto,
+                                $precioxunidad_producto,
+                                $vencimiento_producto,
+                                $estado_producto
+                            ) {
+
+         $query = "INSERT INTO prod_productos ( 
+                                    codigo_producto,
+                                    codigobarra_producto,
+                                    categoria_producto,
+                                    subcategoria_producto,
+                                    nombre_producto,
+                                    descripcion_producto,
+                                    marca_producto,
+                                    modelo_producto,
+                                    unidad_producto,
+                                    precioxunidad_producto,
+                                    vencimiento_producto,
+                                    estado_producto
+                                )
+
+		   VALUES(  '". $codigo_producto."', 
+                    '". $codigobarra_producto."', 
+                    '". $categoria_producto."', 
+                    '". $subcategoria_producto."', 
+                    '". $nombre_producto."', 
+                    '". $descripcion_producto."', 
+                    '". $marca_producto."', 
+                    '". $modelo_producto."', 
+                    '". $unidad_producto."', 
+                    '". $precioxunidad_producto."',
+                    '". $vencimiento_producto."',
+                    '". $estado_producto."'
+            );";
+
+        return $this->crear_ultimo_id($query);       
+
+    }
+
+    
+    function editarProducto(
+            $id_producto,
+            $codigo_producto,
+            $codigobarra_producto,
+            $categoria_producto,
+            $subcategoria_producto,
+            $nombre_producto,
+            $descripcion_producto,
+            $marca_producto,
+            $modelo_producto,
+            $unidad_producto,
+            $precioxunidad_producto,
+            $vencimiento_producto,
+            $estado_producto
+        ) {
+
+       $query = "UPDATE prod_productos  
+       
+       SET  codigo_producto = '".$codigo_producto."', 
+            codigobarra_producto = '".$codigobarra_producto."', 
+            categoria_producto = '".$categoria_producto."', 
+            subcategoria_producto = '".$subcategoria_producto."', 
+            nombre_producto = '".$nombre_producto."', 
+            descripcion_producto = '".$descripcion_producto."', 
+            marca_producto = '".$marca_producto."', 
+            modelo_producto = '".$modelo_producto."', 
+            unidad_producto = '".$unidad_producto."', 
+            precioxunidad_producto = '".$precioxunidad_producto."',
+            vencimiento_producto = '".$vencimiento_producto."',
+            estado_producto = '".$estado_producto."'
+
+        WHERE id_producto = '" . $id_producto . "'";
+
+       return $this->modificarRegistros($query);
+
+    }
+
+    function eliminarProducto($id_producto) {
+
+        $query = "DELETE FROM prod_productos WHERE id_producto = '". $id_producto ."'";
+        $this->modificarRegistros($query);
+
+    }
+    
+
+}
+
+?>

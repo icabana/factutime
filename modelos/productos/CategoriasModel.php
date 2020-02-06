@@ -3,7 +3,7 @@
 class CategoriasModel extends ModelBase { 
 
 
-    function getTodosCategorias() {        
+    function getTodos() {        
 
         $query = "select 	
 
@@ -19,15 +19,16 @@ class CategoriasModel extends ModelBase {
     }  
   
 
-    function getDatosCategoria($id_categoria) {       
+    function getDatos($id_categoria) {       
 
-     $query = "select 	
-		        prod_categorias.id_categoria, 
-                prod_categorias.nombre_categoria                
+        $query = "select 	
 
-                from prod_categorias     
+                    prod_categorias.id_categoria, 
+                    prod_categorias.nombre_categoria                
 
-                where prod_categorias.id_categoria='".$id_categoria."'";        
+                    from prod_categorias     
+
+                    where prod_categorias.id_categoria='".$id_categoria."'";        
 
          $consulta = $this->consulta($query);
 
@@ -36,29 +37,31 @@ class CategoriasModel extends ModelBase {
     }
 
     
-    function insertarCategoria($CODIGO_CATEGORIA, $nombre_categoria) {                
+    function insertar($nombre_categoria) {                
 
-        $query = "INSERT INTO prod_categorias (CODIGO_CATEGORIA, nombre_categoria)
+        $query = "INSERT INTO prod_categorias (nombre_categoria)
 
-		VALUES('".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', '". utf8_decode(mb_strtoupper($nombre_categoria))."');";
+		VALUES('". utf8_decode(mb_strtoupper($nombre_categoria))."');";
        
         return $this->crear_ultimo_id($query);     
 
     }
     
 
-    function editarCategoria($id_categoria, $CODIGO_CATEGORIA, $nombre_categoria) {        
+    function editar($id_categoria, $nombre_categoria) {        
 
-       $query = "UPDATE prod_categorias  SET CODIGO_CATEGORIA = '".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', nombre_categoria = '".utf8_decode(mb_strtoupper($nombre_categoria))."'
+       $query = "UPDATE prod_categorias  
+       
+                SET nombre_categoria = '".utf8_decode(mb_strtoupper($nombre_categoria))."'
          
-        WHERE id_categoria = '" . $id_categoria . "'";       
+                WHERE id_categoria = '" . $id_categoria . "'";       
 
        return $this->modificarRegistros($query);       
 
     } 
 
 
-    function eliminarCategoria($id_categoria) {        
+    function eliminar($id_categoria) {        
 
         $query = "DELETE FROM prod_categorias WHERE id_categoria = '". $id_categoria ."'";
 

@@ -222,15 +222,15 @@ class EgresosModel extends ModelBase {
 
 
     function insertar(
-                    $consecutivo_egreso,
-                    $metodo_egreso, 
-                    $fecha_egreso, 
-                    $proveedor_egreso, 
-                    $valor_egreso, 
-                    $concepto_egreso, 
-                    $numtransaccion_egreso, 
-                    $numcheque_egreso, 
-                    $banco_egreso 
+                $consecutivo_egreso,
+                $metodo_egreso, 
+                $fecha_egreso, 
+                $proveedor_egreso, 
+                $valor_egreso, 
+                $concepto_egreso, 
+                $numtransaccion_egreso, 
+                $numcheque_egreso, 
+                $banco_egreso 
         ) {       
 
        $query = "INSERT fact_egresos(

@@ -3,7 +3,7 @@
 class CategoriasControlador extends ControllerBase {
 
 
-    public function cargarTablaCategorias() {        
+    public function index() {        
 
         $this->model->cargar("CategoriasModel.php", "configuracion");
         $CategoriasModel = new CategoriasModel();
@@ -15,14 +15,14 @@ class CategoriasControlador extends ControllerBase {
     }    
     
 
-    public function abrirCrearCategoria(){        		
+    public function nuevo(){        		
 
         include 'vistas/configuracion/categorias/insertar.php';        
 
     }      
 
 
-    public function abrirEditarCategoria(){                        
+    public function editar(){                        
 
         $this->model->cargar("CategoriasModel.php", 'configuracion');
         $CategoriasModel = new CategoriasModel();          
@@ -34,12 +34,15 @@ class CategoriasControlador extends ControllerBase {
     }
 
 
-    public function insertarCategoria() {      
+    public function insertar() {      
 
         $this->model->cargar("CategoriasModel.php", "configuracion");
         $CategoriasModel = new CategoriasModel();                      
 
-        $resp = $CategoriasModel->insertarCategoria($_POST["codigo"], $_POST["descripcion"]);     
+        $resp = $CategoriasModel->insertarCategoria(
+                                        $_POST["codigo"], 
+                                        $_POST["descripcion"]
+                                    );     
 
         if( $resp != 0 ){            
             echo 1;
@@ -50,16 +53,16 @@ class CategoriasControlador extends ControllerBase {
     }
     
 
-    public function editarCategoria() {        
+    public function guardar() {        
 
         $this->model->cargar("CategoriasModel.php", 'configuracion');
         $categoriasModel = new CategoriasModel();                
 
         $resp = $categoriasModel->editarCategoria(
-            $_POST["id"], 
-            $_POST["codigo"], 
-            $_POST["descripcion"]
-        );     
+                                        $_POST["id"], 
+                                        $_POST["codigo"], 
+                                        $_POST["descripcion"]
+                                );     
 
         if( $resp != 0 ){			     
 
@@ -74,7 +77,7 @@ class CategoriasControlador extends ControllerBase {
     }    
      
 
-    public function eliminarCategoria() {        
+    public function eliminar() {        
 
         $this->model->cargar("CategoriasModel.php", "configuracion");
         $categoriasModel = new CategoriasModel();        

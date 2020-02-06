@@ -22,6 +22,7 @@ class impuestosModel extends ModelBase {
     function getDatosImpuesto($id_impuesto) {       
 
      $query = "select 	
+
 		        prod_impuestos.id_impuesto, 
                 prod_impuestos.nombre_impuesto                
 
@@ -40,7 +41,8 @@ class impuestosModel extends ModelBase {
 
         $query = "INSERT INTO prod_impuestos (CODIGO_CATEGORIA, nombre_impuesto)
 
-		VALUES('".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', '". utf8_decode(mb_strtoupper($nombre_impuesto))."');";
+		        VALUES('".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', 
+                        '". utf8_decode(mb_strtoupper($nombre_impuesto))."');";
        
         return $this->crear_ultimo_id($query);     
 
@@ -49,7 +51,10 @@ class impuestosModel extends ModelBase {
 
     function editarImpuesto($id_impuesto, $CODIGO_CATEGORIA, $nombre_impuesto) {        
 
-       $query = "UPDATE prod_impuestos  SET CODIGO_CATEGORIA = '".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', nombre_impuesto = '".utf8_decode(mb_strtoupper($nombre_impuesto))."'
+       $query = "UPDATE prod_impuestos  
+       
+                SET CODIGO_CATEGORIA = '".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', 
+                    nombre_impuesto = '".utf8_decode(mb_strtoupper($nombre_impuesto))."'
          
         WHERE id_impuesto = '" . $id_impuesto . "'";       
 

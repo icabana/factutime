@@ -14,6 +14,7 @@ class IngresosControlador extends ControllerBase {
 
     }      
 
+
     public function nuevo(){         
 
         $this->model->cargar("IngresosModel.php", "ingresos");
@@ -40,7 +41,7 @@ class IngresosControlador extends ControllerBase {
         $this->model->cargar("ClientesModel.php", "configuracion");
         $ClientesModel = new ClientesModel();            
 
-        $ingreso = $IngresosModel->getDatosIngreso($_POST['id_ingreso']);
+        $ingreso = $IngresosModel->getDatos($_POST['id_ingreso']);
         
         $valor_en_letras = $this->convertir($ingreso['VALOR_RECIBO']);
         
@@ -145,36 +146,24 @@ class IngresosControlador extends ControllerBase {
     }   
     
 
-     public function imprimirIngreso(){
+     public function imprimirCarta(){
          
         $this->model->cargar("FacturasModel.php", "facturas");
-
         $FacturasModel = new FacturasModel();
         
         $this->model->cargar("IngresosModel.php", "ingresos");
         $IngresosModel = new IngresosModel();
 
-        $this->model->cargar("UsuarioModel.php", "configuracion");
-        $UsuarioModel = new UsuarioModel();
-
         $this->model->cargar("ClientesModel.php", "configuracion");
         $ClientesModel = new ClientesModel();
 
-        $this->model->cargar("TerminosModel.php", "configuracion");
-        $TerminosModel = new TerminosModel();
-
 
         $clientes = $ClientesModel->getTodosClientes();
-        $terminos = $TerminosModel->getTodosTerminos();
-        $roles = $UsuarioModel->getTodosRoles();
 
         $productos = $IngresosModel->getProductosPorIngreso($_POST['id_ingreso']);
-        $consecutivo_bd = $IngresosModel->getConsecutivo();
-        $ingreso = $IngresosModel->getDatosIngreso($_POST['id_ingreso']);
+        $ingreso = $IngresosModel->getDatosIngreso($_POST['id_ingreso']);        
         
-        
-  $admision = $FacturasModel->getInscripcionActualPorEstudiante($ingreso['ID_ESTUDIANTE']);
-        
+        $admision = $FacturasModel->getInscripcionActualPorEstudiante($ingreso['ID_ESTUDIANTE']);        
         
         $valor_en_letras = $this->convertir($ingreso['VALOR_RECIBO']);
 
@@ -186,81 +175,31 @@ class IngresosControlador extends ControllerBase {
 
         echo "urlRuta=".$dirPdf;
 
-
     }
+   
 
-    
-
-     public function imprimirIngreso2(){                       
+     public function imprimirMediaCarta(){                       
 
         $this->model->cargar("IngresosModel.php", "ingresos");
         $IngresosModel = new IngresosModel();
 
         $this->model->cargar("FacturasModel.php", "facturas");
         $FacturasModel = new FacturasModel();
-        
-
-        $this->model->cargar("UsuarioModel.php", "configuracion");
-        $UsuarioModel = new UsuarioModel();
-         
+                 
 
         $this->model->cargar("ClientesModel.php", "configuracion");
         $ClientesModel = new ClientesModel();
         
 
-        $this->model->cargar("TerminosModel.php", "configuracion");
-        $TerminosModel = new TerminosModel();
-                
-
-        $clientes = $ClientesModel->getTodosClientes();
-        $terminos = $TerminosModel->getTodosTerminos();
-        $roles = $UsuarioModel->getTodosRoles();
-        
-
-          $this->model->cargar("CategoriasModel.php", "configuracion");
-        $CategoriasModel = new CategoriasModel();
-        
-
-        $this->model->cargar("SubCategoriasModel.php", "configuracion");
-        $SubCategoriasModel = new SubCategoriasModel();
-        
-
-        $this->model->cargar("UnidadesModel.php", "configuracion");
-        $UnidadesModel = new UnidadesModel();
-        
-
-        $this->model->cargar("UnidadesModel.php", "configuracion");
-        $UnidadesModel = new UnidadesModel();
-        
-
-        $this->model->cargar("TerminosModel.php", "configuracion");
-        $TerminosModel = new TerminosModel();
-        
-
-        $this->model->cargar("BodegasModel.php", "configuracion");
-        $BodegasModel = new BodegasModel();
-        
-
-        $categorias = $CategoriasModel->getTodosCategorias();
-        $subcategorias = $SubCategoriasModel->getTodosSubCategorias();
-        $unidades = $UnidadesModel->getTodosUnidades();
-        $terminos = $TerminosModel->getTodosTerminos();
-
-        $productos = $IngresosModel->getProductosPorIngreso($_POST['id_ingreso']);        
-
-        $consecutivo_bd = $IngresosModel->getConsecutivo();
+        $clientes = $ClientesModel->getTodosClientes();        
 
         $ingreso = $IngresosModel->getDatosIngreso($_POST['id_ingreso']);
         
-  $admision = $FacturasModel->getInscripcionActualPorEstudiante($ingreso['ID_ESTUDIANTE']);
-        $valor_en_letras = $this->convertir($ingreso['VALOR_RECIBO']);        
+        $valor_en_letras = $this->convertir($ingreso['VALOR_RECIBO']);   
 
+        include("vistas/ingresos/ingreso2.php");                    
 
-        include("vistas/ingresos/ingreso2.php");   
-                 
-
-        $dirPdf = "archivos/pdf_ingreso2".$_POST['id_ingreso'].".pdf";
-          
+        $dirPdf = "archivos/pdf_ingreso2".$_POST['id_ingreso'].".pdf";          
 
         $this->pdf->Output(''.$dirPdf.'');
             
@@ -269,7 +208,7 @@ class IngresosControlador extends ControllerBase {
     }
     
 
-     public function imprimirIngreso3(){
+     public function imprimirTicket(){
        
 
         $this->model->cargar("IngresosModel.php", "ingresos");
@@ -278,8 +217,6 @@ class IngresosControlador extends ControllerBase {
         $this->model->cargar("FacturasModel.php", "facturas");
         $FacturasModel = new FacturasModel();         
 
-        $this->model->cargar("UsuarioModel.php", "configuracion");
-        $UsuarioModel = new UsuarioModel();         
 
         $this->model->cargar("ClientesModel.php", "configuracion");
         $ClientesModel = new ClientesModel();         
@@ -289,44 +226,8 @@ class IngresosControlador extends ControllerBase {
 
         $clientes = $ClientesModel->getTodosClientes();
 
-        $terminos = $TerminosModel->getTodosTerminos();
-
-        $roles = $UsuarioModel->getTodosRoles();
-
-        $this->model->cargar("CategoriasModel.php", "configuracion");
-        $CategoriasModel = new CategoriasModel();        
-
-        $this->model->cargar("SubCategoriasModel.php", "configuracion");
-        $SubCategoriasModel = new SubCategoriasModel();        
-
-        $this->model->cargar("UnidadesModel.php", "configuracion");
-        $UnidadesModel = new UnidadesModel();        
-
-        $this->model->cargar("TerminosModel.php", "configuracion");
-        $TerminosModel = new TerminosModel();        
-        
-
-        $categorias = $CategoriasModel->getTodosCategorias();
-        $subcategorias = $SubCategoriasModel->getTodosSubCategorias();
-        $unidades = $UnidadesModel->getTodosUnidades();
-        $terminos = $TerminosModel->getTodosTerminos();
-        $productos = $IngresosModel->getProductosPorIngreso($_POST['id_ingreso']);
-        $consecutivo_bd = $IngresosModel->getConsecutivo();      
-        
-
         $ingreso = $IngresosModel->getDatosIngreso($_POST['id_ingreso']);
 
-        $facturas = $FacturasModel->getFacturasPorCliente($ingreso['CLIENTE_RECIBO']);
-        
-        $total_facturado = 0;
-        
-        foreach ($facturas as $factura) {
-            
-            $total_facturado += $factura['TOTAL_FACTURA'];
-            
-        }
-        
-               
         
         $ingresos = $IngresosModel->getIngresosPorCliente($ingreso['CLIENTE_RECIBO']);
         
@@ -341,8 +242,6 @@ class IngresosControlador extends ControllerBase {
 
         $valor_en_letras = $this->convertir($ingreso['VALOR_RECIBO']);        
 
-        $saldo_pendiente = $total_facturado - $total_recibido;        
-        
 
         include("vistas/ingresos/ingreso3.php");                   
 
