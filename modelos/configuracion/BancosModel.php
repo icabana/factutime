@@ -4,12 +4,14 @@ class BancosModel extends ModelBase {
 
     function getTodos(){
         
-        $query = "select    bancos.id_banco, 
-                            bancos.nombre_banco
+        $query  =   "   
+                    select      bancos.id_banco, 
+                                bancos.nombre_banco
             	                 
-                        from bancos
+                    from        bancos
                         
-                        ORDER BY bancos.nombre_banco";
+                    order by    bancos.nombre_banco                    
+                    ";
 
         $consulta = $this->consulta($query);
         return $consulta;
@@ -18,21 +20,20 @@ class BancosModel extends ModelBase {
     
     function getDatos($id_banco){
         
-        $query = "select    bancos.id_banco, 
-                            bancos.nombre_banco
+        $query  =   "
+                    select      bancos.id_banco, 
+                                bancos.nombre_banco
             	                 
-                        from bancos
+                    from        bancos
                              
-                        where bancos.id_banco = '".$id_banco."'
+                    where       bancos.id_banco = '".$id_banco."'
                         
-                        ORDER BY bancos.nombre_banco";
+                    order by    bancos.nombre_banco
+                    ";
         
-        $consulta = $this->consulta($query);
-        
+        $consulta = $this->consulta($query);        
         return $consulta[0];
         
     }        
   
 }
-
-?>

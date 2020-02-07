@@ -29,7 +29,7 @@ $froms = new Formularios();
 
                     <br>
 
-                    <input value="<?php echo $datos_factura['FECHA_FACTURA']; ?>" type="text" class="form-control pull-right requerido" id="fecha" name="fecha">
+                    <input value="<?php echo $datos_factura['fecha_factura']; ?>" type="text" class="form-control pull-right requerido" id="fecha" name="fecha">
 
                 </div>
 
@@ -422,47 +422,7 @@ $froms = new Formularios();
 
     <div class="box-footer">
 
-        <?php
-
-        if ($datos_factura['TIPO_FACTURA'] == "PEDIDOS") {
-
-        ?>
-
-
-
-            <div class="col-md-3">
-
-                <button onclick="convertir_factura(); return false;" class="btn btn-block btn-success btn-lg">CONVERTIR A FACTURA</button></div>
-
-
-
-        <?php
-
-
-
-        }
-
-
-
-        if ($datos_factura['TIPO_FACTURA'] == "COTIZACIONES") {
-
-
-
-        ?>
-
-
-
-            <div class="col-md-3">
-
-                <button onclick="convertir_factura(); return false;" class="btn btn-block btn-success btn-lg">CONVERTIR A FACTURA</button></div>
-
-
-
-        <?php
-
-        }
-
-        ?>
+       
 
 
         <h4><b>Listado de Cuotas:</b></h4>

@@ -5,50 +5,50 @@ class IngresosModel extends ModelBase {
     
     function getTodos() {
 
-        $query = "select   
+        $query  =   "select   
 
-                    fact_ingresos.id_ingreso, 
-                    fact_ingresos.consecutivo_ingreso,
-                    fact_ingresos.metodo_ingreso,
-                    fact_ingresos.fecha_ingreso,
-                    fact_ingresos.cliente_ingreso,
-                    fact_ingresos.valor_ingreso,
-                    fact_ingresos.concepto_ingreso,
-                    fact_ingresos.numtransaccion_ingreso,
-                    fact_ingresos.numcheque_ingreso,
-                    fact_ingresos.banco_ingreso,                
-                    
-                    fact_metodospago.nombre_metodo,
+                        fact_ingresos.id_ingreso, 
+                        fact_ingresos.consecutivo_ingreso,
+                        fact_ingresos.metodo_ingreso,
+                        fact_ingresos.fecha_ingreso,
+                        fact_ingresos.cliente_ingreso,
+                        fact_ingresos.valor_ingreso,
+                        fact_ingresos.concepto_ingreso,
+                        fact_ingresos.numtransaccion_ingreso,
+                        fact_ingresos.numcheque_ingreso,
+                        fact_ingresos.banco_ingreso,                
+                        
+                        fact_metodospago.nombre_metodo,
 
-                    acto_clientes.id_cliente, 
-                    acto_clientes.tipodocumento_cliente,
-                    acto_clientes.documento_cliente,
-                    acto_clientes.nombres_cliente,
-                    acto_clientes.apellidos_cliente,
-                    acto_clientes.direccionresidencia_cliente,
-                    acto_clientes.direccioncorrespondencia_cliente,
-                    acto_clientes.telefono_cliente,
-                    acto_clientes.celular_cliente,
-                    acto_clientes.correo_cliente,
-                    acto_clientes.ciudad_cliente,
-                    acto_clientes.pais_cliente,
-                    acto_clientes.genero_cliente,
-                    acto_clientes.estadocivil_cliente,
-                    acto_clientes.hijos_cliente,
-                    acto_clientes.fechanacimiento_cliente,
-                    acto_clientes.educacion_cliente,
-                    acto_clientes.ocupacion_cliente,
-                    acto_clientes.estado_cliente,
-                    acto_clientes.paginaweb_cliente,
-                    acto_clientes.tipo_cliente,
+                        acto_clientes.id_cliente, 
+                        acto_clientes.tipodocumento_cliente,
+                        acto_clientes.documento_cliente,
+                        acto_clientes.nombres_cliente,
+                        acto_clientes.apellidos_cliente,
+                        acto_clientes.direccionresidencia_cliente,
+                        acto_clientes.direccioncorrespondencia_cliente,
+                        acto_clientes.telefono_cliente,
+                        acto_clientes.celular_cliente,
+                        acto_clientes.correo_cliente,
+                        acto_clientes.ciudad_cliente,
+                        acto_clientes.pais_cliente,
+                        acto_clientes.genero_cliente,
+                        acto_clientes.estadocivil_cliente,
+                        acto_clientes.hijos_cliente,
+                        acto_clientes.fechanacimiento_cliente,
+                        acto_clientes.educacion_cliente,
+                        acto_clientes.ocupacion_cliente,
+                        acto_clientes.estado_cliente,
+                        acto_clientes.paginaweb_cliente,
+                        acto_clientes.tipo_cliente,
 
-                    bancos.nombre_banco
+                        bancos.nombre_banco
 
-                    from fact_ingresos 
+                        from fact_ingresos 
 
-                    left join acto_clientes ON fact_ingresos.cliente_ingreso = acto_clientes.id_cliente
-                    left join fact_metodospago ON fact_ingresos.metodo_ingreso = fact_metodospago.id_metodo
-                    left join bancos ON fact_ingresos.banco_ingreso = bancos.id_banco" ;
+                        left join acto_clientes ON fact_ingresos.cliente_ingreso = acto_clientes.id_cliente
+                        left join fact_metodospago ON fact_ingresos.metodo_ingreso = fact_metodospago.id_metodo
+                        left join bancos ON fact_ingresos.banco_ingreso = bancos.id_banco" ;
 
                 $consulta = $this->consulta($query);
                return $consulta;                      
@@ -69,7 +69,7 @@ class IngresosModel extends ModelBase {
     }  
 
     
-    function getPorCliente($CLIENTE_RECIBO) {
+    function getPorCliente($cliente_ingreso) {
 
         $query = "select   
 
@@ -117,7 +117,8 @@ class IngresosModel extends ModelBase {
                 left join bancos ON fact_ingresos.banco_ingreso = bancos.id_banco
                     
                 where fac_ingresos.CONSECUTIVO_RECIBO != '' and 
-                fac_ingresos.CLIENTE_RECIBO = '".$CLIENTE_RECIBO."'" ;
+                
+                fac_ingresos.cliente_ingreso = '".$cliente_ingreso."'" ;
 
                 $consulta = $this->consulta($query);
                 return $consulta;                      

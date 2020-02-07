@@ -54,11 +54,10 @@
 
                 <thead>
                     <tr >          
-                        <th >CONSECUTIVO</th>
-                        <th >CLIENTE</th> 
-                        <th >VENDEDOR</th> 
-                        <th >FECHA</th> 
-                        <th >VALOR</th> 
+                        <th >Consecutivo</th>
+                        <th >Cliente</th>  
+                        <th >Fecha</th> 
+                        <th >Valor</th> 
                          <?php
             if($_SESSION['rol'] == 8){
            ?>
@@ -69,8 +68,8 @@
                     }
                     
                 ?>
-                        <th >Imprimir 1</th>
-                        <th >Imprimir 2</th>
+                        <th >Imprimir Carta</th>
+                        <th >Imprimir Media carta</th>
                         <th >Imprimir Tickets</th>
                     </tr>
                 </thead>
@@ -87,37 +86,31 @@
 
                 echo "<tr style='height:30px'>";
 
-                echo "<td>" . utf8_encode($consecutivo) . "</a></td>";
+                echo "<td>" . $consecutivo . "</a></td>";
 
-                echo "<td>" . utf8_encode( $items['NOMBRES_ESTUDIANTE']. " ". $items['APELLIDOS_ESTUDIANTE']) . "</td>";
+                echo "<td>" .  $items['nombre_cliente'] . "</td>";
 
-                echo "<td>" . utf8_encode( $items['VENDEDOR_FACTURA']) . "</td>";
+                echo "<td>" . $items['fecha_factura'] . "</td>";
 
-                echo "<td>" . htmlentities( $items['FECHA_FACTURA']) . "</td>";
-
-                echo "<td>$" . number_format( $items['TOTAL_FACTURA'], 0, ',', '.') . "</td>";
+                echo "<td>$" . number_format( $items['total_factura'], 0, ',', '.') . "</td>";
 
 
             if($_SESSION['rol'] == 8){
            
-                 echo '<td style="width:25px" onclick="abrir_editar_facturas(' . $items["ID_FACTURA"] .');"><a href="#">Editar</a></td>';
+                 echo '<td style="width:25px" onclick="abrir_editar_facturas(' . $items["id_factura"] .');"><a href="#">Editar</a></td>';
                  
-                 echo '<td style="width:25px" onclick="eliminar_factura(' . $items["ID_FACTURA"] .');"><a href="#">Eliminar</a></td>';                                
+                 echo '<td style="width:25px" onclick="eliminar_factura(' . $items["id_factura"] .');"><a href="#">Eliminar</a></td>';                                
                 
                     }
                
 
-                echo "<td><a href='#' title='Imprimir Factura Media Carta' onclick='imprimir_factura(".$items['ID_FACTURA']."); return false;'>Media Carta</a></td>";
+                echo "<td><a href='#' title='Imprimir Factura Media Carta' onclick='imprimir_factura(".$items['id_factura']."); return false;'>Media Carta</a></td>";
 
-                echo "<td><a href='#' title='Imprimir Factura Carta' onclick='imprimir_factura2(".$items['ID_FACTURA']."); return false;'>Carta</a></td>";
+                echo "<td><a href='#' title='Imprimir Factura Carta' onclick='imprimir_factura2(".$items['id_factura']."); return false;'>Carta</a></td>";
 
-                echo "<td><a target='_blank' href='#' title='Imprimir Tickets' onclick='imprimir_tickets(".$items['ID_FACTURA']."); return false;'>Imprimir Tickets</a></td>";
-
-                                                                         
-
-				
-
-                    echo "</tr>";
+                echo "<td><a target='_blank' href='#' title='Imprimir Tickets' onclick='imprimir_tickets(".$items['id_factura']."); return false;'>Imprimir Tickets</a></td>";
+                     
+                echo "</tr>";
 
             }
 

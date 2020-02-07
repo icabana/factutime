@@ -2,7 +2,7 @@
 
 class EgresosModel extends ModelBase {
   
-    function getTodosEgresos() {
+    function getTodos() {
 
     $query = "select   
 
@@ -54,7 +54,7 @@ class EgresosModel extends ModelBase {
 
     }  
   
-    function getEgresosEntreFechas($FECHA1, $FECHA2) {
+    function getEntreFechas($fecha_inicio, $fecha_final) {
 
      $query = "select   
 
@@ -103,14 +103,14 @@ class EgresosModel extends ModelBase {
 
                 where 
                 fact_egresos.consecutivo_egreso != '' AND 
-                fact_egresos.fecha_egreso BETWEEN '".$FECHA1."' AND '".$FECHA2."'" ;
+                fact_egresos.fecha_egreso BETWEEN '".$fecha_inicio."' AND '".$fecha_final."'" ;
 
                 $consulta = $this->consulta($query);
                return $consulta;                      
 
     }  
   
-    function getEgresosPorCliente($proveedor_egreso) {
+    function getPorProveedor($proveedor_egreso) {
 
      $query = "select   
 
@@ -157,7 +157,7 @@ class EgresosModel extends ModelBase {
                 left join fact_metodospago ON fact_egresos.metodo_egreso = fact_metodospago.id_metodo
                 left join bancos ON fact_egresos.banco_egreso = bancos.id_banco
 
-                where fact_egresos.consecutivo_egreso != '' and proveedor_egreso = '".$proveedor_egreso."'" ;
+                where proveedor_egreso = '".$proveedor_egreso."'" ;
 
                 $consulta = $this->consulta($query);
                return $consulta;                      

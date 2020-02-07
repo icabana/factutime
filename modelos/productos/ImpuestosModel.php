@@ -3,11 +3,12 @@
 class impuestosModel extends ModelBase { 
 
 
-    function getTodosimpuestos() {        
+    function getTodos() {        
 
         $query = "select 	
 
                     prod_impuestos.id_impuesto, 
+                    prod_impuestos.codigo_impuesto,
                     prod_impuestos.nombre_impuesto                
 
                     from prod_impuestos" ;        
@@ -19,11 +20,12 @@ class impuestosModel extends ModelBase {
     }  
   
 
-    function getDatosImpuesto($id_impuesto) {       
+    function getDatos($id_impuesto) {       
 
      $query = "select 	
 
 		        prod_impuestos.id_impuesto, 
+                prod_impuestos.codigo_impuesto,
                 prod_impuestos.nombre_impuesto                
 
                 from prod_impuestos     
@@ -37,11 +39,11 @@ class impuestosModel extends ModelBase {
     }
 
     
-    function insertarImpuesto($CODIGO_CATEGORIA, $nombre_impuesto) {                
+    function insertar($codigo_impuesto, $nombre_impuesto) {                
 
-        $query = "INSERT INTO prod_impuestos (CODIGO_CATEGORIA, nombre_impuesto)
+        $query = "INSERT INTO prod_impuestos (nombre_impuesto)
 
-		        VALUES('".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', 
+		        VALUES('".utf8_decode(mb_strtoupper($codigo_impuesto))."', 
                         '". utf8_decode(mb_strtoupper($nombre_impuesto))."');";
        
         return $this->crear_ultimo_id($query);     
@@ -49,12 +51,12 @@ class impuestosModel extends ModelBase {
     }
     
 
-    function editarImpuesto($id_impuesto, $CODIGO_CATEGORIA, $nombre_impuesto) {        
+    function editar($id_impuesto, $codigo_impuesto, $nombre_impuesto) {        
 
        $query = "UPDATE prod_impuestos  
        
-                SET CODIGO_CATEGORIA = '".utf8_decode(mb_strtoupper($CODIGO_CATEGORIA))."', 
-                    nombre_impuesto = '".utf8_decode(mb_strtoupper($nombre_impuesto))."'
+                SET codigo_impuesto = '".$codigo_impuesto."', 
+                    nombre_impuesto = '".$nombre_impuesto."'
          
         WHERE id_impuesto = '" . $id_impuesto . "'";       
 
@@ -63,7 +65,7 @@ class impuestosModel extends ModelBase {
     } 
 
 
-    function eliminarImpuesto($id_impuesto) {        
+    function eliminar($id_impuesto) {        
 
         $query = "DELETE FROM prod_impuestos WHERE id_impuesto = '". $id_impuesto ."'";
 

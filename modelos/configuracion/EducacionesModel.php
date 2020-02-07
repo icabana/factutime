@@ -4,12 +4,13 @@ class EducacionesModel extends ModelBase {
 
     function getTodos(){
         
-        $query = "select    educaciones.id_educacion, 
-                            educaciones.nombre_educacion
+        $query  =   "
+                    select      educaciones.id_educacion, 
+                                educaciones.nombre_educacion
             	                 
-                        from educaciones
+                    from        educaciones
                         
-                        ORDER BY educaciones.nombre_educacion";
+                    order by    educaciones.nombre_educacion";
 
         $consulta = $this->consulta($query);
         return $consulta;
@@ -18,21 +19,20 @@ class EducacionesModel extends ModelBase {
     
     function getDatos($id_educacion){
         
-        $query = "select    educaciones.id_educacion, 
-                            educaciones.nombre_educacion
+        $query  =   "
+                    select      educaciones.id_educacion, 
+                                educaciones.nombre_educacion
             	                 
-                        from educaciones
+                    from        educaciones
                              
-                        where educaciones.id_educacion = '".$id_educacion."'
+                    where       educaciones.id_educacion = '".$id_educacion."'
                         
-                        ORDER BY educaciones.nombre_educacion";
+                    order by    educaciones.nombre_educacion";
         
-        $consulta = $this->consulta($query);
-        
+        $consulta = $this->consulta($query);        
         return $consulta[0];
         
-    }    
-    
+    }        
   
 }
 
