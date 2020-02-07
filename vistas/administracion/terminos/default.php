@@ -1,56 +1,4 @@
-<script type="text/javascript" >
-
-    function abrir_crear_terminos(){	
-        
-        abrirVentanaContenedor(
-            'configuracion', 
-            'Terminos', 
-            'abrirCrearTermino',
-            '',
-            ''
-        );	
-
-    }
-
-    function abrir_editar_terminos(id_termino){
-
-        abrirVentanaContenedor(
-            'configuracion', 
-            'Terminos', 
-            'abrirEditarTermino',
-            'id_termino='+id_termino,''
-        );        
-
-    }
-
-    function eliminar_terminos(id_terminos){
-
-        mensaje_confirmar("Está seguro de eliminar este Termino?", "eliminar_terminos2("+id_terminos+"); ");
-
-    }
-
-    function eliminar_terminos2(id_termino){       
-
-        ejecutarAccion( 
-            'configuracion', 
-            'Terminos', 
-            'eliminarTermino', 
-            "id_termino="+id_termino, 
-            ' mensaje_alertas("success", "Termino Eliminado con Éxito", "center"); cargarTerminos();' 
-        );
-
-    }
-
-    $( document ).ready(function() {    
-        CrearTabla('tabla_terminos');
-    });
-
-
-</script>   
-
-
-
- <div class="row">
+<div class="row">
 
     <div class="col-xs-12">
 
@@ -60,9 +8,7 @@
                     <table>
                         <tr>
                             <td>
-
                                 <h1 style='font-size:20px'>GESTIONAR T&Eacute;RMINOS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-
                             </td>
 
                             <td>
@@ -81,11 +27,7 @@
 
             </div>
 
-            
-
             <div class="box-body table-responsive no-padding">
-
-                
 
                 <table id="tabla_terminos" style="width:100%;" cellpadding="0" cellspacing="0" border="0" class="display" >
 

@@ -2,7 +2,7 @@
 
 class FacturasModel extends ModelBase {  
 
-    function getTodosFacturas() {        
+    function getTodos() {        
 
         $query = "select 	
 
@@ -14,8 +14,7 @@ class FacturasModel extends ModelBase {
                 fac_facturas.FECHA_FACTURA,         
                 fac_facturas.VENCIMIENTO_FACTURA,
                 fac_facturas.VENDEDOR_FACTURA,
-                fac_facturas.TERMINO_FACTURA,                
-
+                fac_facturas.TERMINO_FACTURA, 
                 fac_facturas.SUBTOTAL_FACTURA,
                 fac_facturas.DESCUENTO_FACTURA,
                 fac_facturas.IMPUESTO19_FACTURA,
@@ -23,14 +22,54 @@ class FacturasModel extends ModelBase {
                 fac_facturas.TOTAL_FACTURA,
                 fac_facturas.DESCRIPCION_FACTURA,                
 
-                tbl_estudiantes.NOMBRES_ESTUDIANTE,                
-                tbl_estudiantes.APELLIDOS_ESTUDIANTE,
-                tbl_estudiantes.DOCUMENTO_ESTUDIANTE,
-                tbl_estudiantes.DIRECCION_ESTUDIANTE,
-                tbl_estudiantes.TELEFONO_ESTUDIANTE,
-                tbl_estudiantes.CIUDAD_ESTUDIANTE                
+                acto_clientes.id_cliente, 
+                acto_clientes.tipodocumento_cliente,
+                acto_clientes.documento_cliente,
+                acto_clientes.nombres_cliente,
+                acto_clientes.apellidos_cliente,
+                concat( clientes.nombres_cliente,' ',clientes.apellidos_cliente) as nombre_cliente,
+                acto_clientes.direccionresidencia_cliente,
+                acto_clientes.direccioncorrespondencia_cliente,
+                acto_clientes.telefono_cliente,
+                acto_clientes.celular_cliente,
+                acto_clientes.correo_cliente,
+                acto_clientes.ciudad_cliente,
+                acto_clientes.pais_cliente,
+                acto_clientes.genero_cliente,
+                acto_clientes.estadocivil_cliente,
+                acto_clientes.hijos_cliente,
+                acto_clientes.fechanacimiento_cliente,
+                acto_clientes.educacion_cliente,
+                acto_clientes.ocupacion_cliente,
+                acto_clientes.estado_cliente,
+                acto_clientes.paginaweb_cliente,
+                acto_clientes.tipo_cliente,
+            
+                tiposdocumento.nombre_tipodocumento,
 
-                from fac_facturas left join tbl_estudiantes ON fac_facturas.CLIENTE_FACTURA = tbl_estudiantes.ID_ESTUDIANTE  
+                paises.nombre_pais,
+
+                generos.nombre_genero,
+
+                estadoscivil.nombre_estadocivil,
+
+                educaciones.nombre_educacion,
+
+                ocupaciones.nombre_ocupacion,
+
+                estados.nombre_estado,
+
+                actos_tipos.nombre_tipo,
+
+                from acto_clientes
+                    left join tiposdocumento on clientes.tipodocumento_cliente = tiposdocumento.id_tipodocumento
+                    left join paises on clientes.pais_cliente = paises.id_pais       
+                    left join generos on clientes.genero_cliente = generos.id_genero
+                    left join estadoscivil on clientes.estadocivil_cliente = estadoscivil.id_estadocivil
+                    left join educaciones on clientes.educacion_cliente = educaciones.id_educacion
+                    left join ocupaciones on clientes.ocupacion_cliente = ocupaciones.id_ocupacion
+                    left join estados on clientes.estado_cliente = estados.id_estado
+                    left join acto_tipos on clientes.tipo_cliente = acto_tipos.id_tipo
 
                 where fac_facturas.CONSECUTIVO_FACTURA != '' AND fac_facturas.TIPO_FACTURA = 'FACTURAS'
             
@@ -72,14 +111,14 @@ class FacturasModel extends ModelBase {
                 fac_facturas.TOTAL_FACTURA,
                 fac_facturas.DESCRIPCION_FACTURA,                
 
-                tbl_estudiantes.NOMBRES_ESTUDIANTE,                
-                tbl_estudiantes.APELLIDOS_ESTUDIANTE,
-                tbl_estudiantes.DOCUMENTO_ESTUDIANTE,
-                tbl_estudiantes.DIRECCION_ESTUDIANTE,
-                tbl_estudiantes.TELEFONO_ESTUDIANTE,
-                tbl_estudiantes.CIUDAD_ESTUDIANTE
+                tbl_clientes.NOMBRES_ESTUDIANTE,                
+                tbl_clientes.APELLIDOS_ESTUDIANTE,
+                tbl_clientes.DOCUMENTO_ESTUDIANTE,
+                tbl_clientes.DIRECCION_ESTUDIANTE,
+                tbl_clientes.TELEFONO_ESTUDIANTE,
+                tbl_clientes.CIUDAD_ESTUDIANTE
 
-                from fac_facturas left join tbl_estudiantes ON fac_facturas.CLIENTE_FACTURA = tbl_estudiantes.ID_ESTUDIANTE  
+                from fac_facturas left join tbl_clientes ON fac_facturas.CLIENTE_FACTURA = tbl_clientes.ID_ESTUDIANTE  
 
                 where fac_facturas.CONSECUTIVO_FACTURA != '' AND fac_facturas.TIPO_FACTURA = 'FACTURAS'" ;
 
@@ -150,14 +189,14 @@ class FacturasModel extends ModelBase {
                 fac_facturas.DESCRIPCION_FACTURA,
                 
 
-                tbl_estudiantes.NOMBRES_ESTUDIANTE,                
-                tbl_estudiantes.APELLIDOS_ESTUDIANTE,
-                tbl_estudiantes.DOCUMENTO_ESTUDIANTE,
-                tbl_estudiantes.DIRECCION_ESTUDIANTE,
-                tbl_estudiantes.TELEFONO_ESTUDIANTE,
-                tbl_estudiantes.CIUDAD_ESTUDIANTE                
+                tbl_clientes.NOMBRES_ESTUDIANTE,                
+                tbl_clientes.APELLIDOS_ESTUDIANTE,
+                tbl_clientes.DOCUMENTO_ESTUDIANTE,
+                tbl_clientes.DIRECCION_ESTUDIANTE,
+                tbl_clientes.TELEFONO_ESTUDIANTE,
+                tbl_clientes.CIUDAD_ESTUDIANTE                
 
-                from fac_facturas left join tbl_estudiantes ON fac_facturas.CLIENTE_FACTURA = tbl_estudiantes.ID_ESTUDIANTE  
+                from fac_facturas left join tbl_clientes ON fac_facturas.CLIENTE_FACTURA = tbl_clientes.ID_ESTUDIANTE  
 
                 where fac_facturas.CONSECUTIVO_FACTURA != '' AND fac_facturas.TIPO_FACTURA = 'FACTURAS' AND fac_facturas.CLIENTE_FACTURA = '".$CLIENTE_FACTURA."'
             
@@ -501,25 +540,25 @@ class FacturasModel extends ModelBase {
 
                 
 
-                tbl_estudiantes.NOMBRES_ESTUDIANTE,
+                tbl_clientes.NOMBRES_ESTUDIANTE,
                 
-                tbl_estudiantes.APELLIDOS_ESTUDIANTE,
+                tbl_clientes.APELLIDOS_ESTUDIANTE,
 
-                tbl_estudiantes.DOCUMENTO_ESTUDIANTE,
+                tbl_clientes.DOCUMENTO_ESTUDIANTE,
 
-                tbl_estudiantes.DIRECCION_ESTUDIANTE,
+                tbl_clientes.DIRECCION_ESTUDIANTE,
 
-                tbl_estudiantes.TELEFONO_ESTUDIANTE,
+                tbl_clientes.TELEFONO_ESTUDIANTE,
                 
-                tbl_estudiantes.CELULAR_ESTUDIANTE,
+                tbl_clientes.CELULAR_ESTUDIANTE,
                 
-                tbl_estudiantes.CORREO_ESTUDIANTE,
+                tbl_clientes.CORREO_ESTUDIANTE,
 
-                tbl_estudiantes.CIUDAD_ESTUDIANTE
+                tbl_clientes.CIUDAD_ESTUDIANTE
 
                 
 
-                from fac_facturas left join tbl_estudiantes ON fac_facturas.CLIENTE_FACTURA = tbl_estudiantes.ID_ESTUDIANTE   
+                from fac_facturas left join tbl_clientes ON fac_facturas.CLIENTE_FACTURA = tbl_clientes.ID_ESTUDIANTE   
 
                 where fac_facturas.ID_FACTURA='".$ID_FACTURA."'";
 
@@ -549,9 +588,9 @@ class FacturasModel extends ModelBase {
                     tbl_inscripciones.POLIZA_ADMISION,
                     tbl_inscripciones.SEGURO_ADMISION,
                     tbl_inscripciones.ESTADO_ADMISION,
-                    tbl_estudiantes.ID_ESTUDIANTE,
-                    tbl_estudiantes.NOMBRES_ESTUDIANTE,
-                    tbl_estudiantes.APELLIDOS_ESTUDIANTE,
+                    tbl_clientes.ID_ESTUDIANTE,
+                    tbl_clientes.NOMBRES_ESTUDIANTE,
+                    tbl_clientes.APELLIDOS_ESTUDIANTE,
                     
                     tbl_inscripciones.FECHAAOCL_ADMISION,
                     tbl_inscripciones.FECHAACTA_ADMISION, 
@@ -575,7 +614,7 @@ class FacturasModel extends ModelBase {
                 tbl_grupos.FECHAINICIO_GRUPO,
                 tbl_grupos.FECHAFIN_GRUPO                
                 
-			from tbl_inscripciones LEFT JOIN tbl_estudiantes on tbl_inscripciones.ESTUDIANTE_ADMISION = tbl_estudiantes.ID_ESTUDIANTE LEFT JOIN tbl_acudientes ON tbl_inscripciones.ACUDIENTE_ADMISION = tbl_acudientes.ID_ACUDIENTE LEFT JOIN tbl_grupos ON tbl_inscripciones.GRUPO_ADMISION = tbl_grupos.ID_GRUPO LEFT JOIN tbl_programas ON tbl_grupos.PROGRAMA_GRUPO = tbl_programas.ID_PROGRAMA
+			from tbl_inscripciones LEFT JOIN tbl_clientes on tbl_inscripciones.ESTUDIANTE_ADMISION = tbl_clientes.ID_ESTUDIANTE LEFT JOIN tbl_acudientes ON tbl_inscripciones.ACUDIENTE_ADMISION = tbl_acudientes.ID_ACUDIENTE LEFT JOIN tbl_grupos ON tbl_inscripciones.GRUPO_ADMISION = tbl_grupos.ID_GRUPO LEFT JOIN tbl_programas ON tbl_grupos.PROGRAMA_GRUPO = tbl_programas.ID_PROGRAMA
             
 			where tbl_inscripciones.ESTUDIANTE_ADMISION = '".$ID_ESTUDIANTE."' order by tbl_inscripciones.ID_INSCRIPCION desc LIMIT 1 " ;
             

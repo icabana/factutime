@@ -1,34 +1,8 @@
-<script type="text/javascript" >
-
-    function insertar_termino(){            
-
-        if(validar_requeridos() == 0){
-            return 0;
-        }
-
-        var datos = $('#formTerminos').serialize();
-
-        ejecutarAccion(
-            'configuracion', 
-            'Terminos', 
-            'insertarTermino', 
-            datos,
-            'if(data == 1){ mensaje_alertas("success", "Termino Registrada Exitosamente", "center"); cargarTerminos(); }else{  mensaje_alertas("error", "Error al insertar el Termino", "center");  }'
-
-        );	            
-
-    }        
-
-</script>
-
 <?php
 $froms = new Formularios();
 ?>
 
-
 <form id="formTerminos" method="post">
-
-    
 
 <div class="box box-default">
 
@@ -38,17 +12,9 @@ $froms = new Formularios();
 
     </div>
 
-        
-
     <div class="box-body">
 
-        
-
-        
-
         <div class="row">
-
-                
 
             <div class="col-md-6">
 
@@ -61,10 +27,6 @@ $froms = new Formularios();
                 </div>
 
             </div>
-
-            
-
-       
 
             <div class="col-md-6">
 
@@ -82,24 +44,18 @@ $froms = new Formularios();
 
         </div>
 
-         
-
-        
-
         <div class="box-footer">
 
-                <div class="col-md-6">
+            <div class="col-md-6">
 
-             <button onclick="insertar_termino(); return false;" class="btn btn-block btn-primary btn-lg">GUARDAR</button></div>
+            <button onclick="insertar_termino(); return false;" class="btn btn-block btn-primary btn-lg">GUARDAR</button></div>
 
-             <div class="col-md-6">
+            <div class="col-md-6">
 
              <button onclick="cargarTerminos(); return false;" class="btn btn-block btn-danger btn-lg">CANCELAR</button></div>
 
         </div>
 
     </div>
-
-    
 
 </form>
