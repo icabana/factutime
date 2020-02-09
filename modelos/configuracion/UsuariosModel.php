@@ -6,14 +6,10 @@ class UsuariosModel extends ModelBase {
         
         $query = "select 
                     usuarios.id_usuario, 
-                    usuarios.nick_usuario, 
-                    usuarios.password_usuario,
-                    usuarios.estado_usuario,
-                    usuarios.rol_usuario,
+                    usuarios.documento_usuario, 
+                    usuarios.password_usuario
                 
-                    roles.nombre_rol
-                
-                    from usuarios LEFT JOIN roles ON usuarios.rol_usuario = roles.id_rol";
+                    from usuarios";
         
         $consulta = $this->consulta($query);
         return $consulta;       
@@ -24,14 +20,10 @@ class UsuariosModel extends ModelBase {
        
         $query = "select 	
                     usuarios.id_usuario, 
-                    usuarios.nick_usuario, 
-                    usuarios.password_usuario,
-                    usuarios.estado_usuario,
-                    usuarios.rol_usuario,
-                    
-                    roles.NOMBRE_ROL as nombre_rol
-                
-                    from usuarios LEFT JOIN roles ON usuarios.rol_usuario = roles.id_rol
+                    usuarios.documento_usuario, 
+                    usuarios.password_usuario
+
+                    from usuarios
 
                     where usuarios.id_usuario='".$id_usuario."'";
         
@@ -41,20 +33,17 @@ class UsuariosModel extends ModelBase {
     }
     
     function insertar(                               
-                        $nick_usuario, 
-                        $password_usuario, 
-                        $rol_usuario
+                        $documento_usuario, 
+                        $password_usuario
                     ){
                 
         $query = "INSERT INTO usuarios (
-                                nick_usuario, 
-                                password_usuario, 
-                                rol_usuario
+                                documento_usuario, 
+                                password_usuario
                             )
                             VALUES(
-                                '".$nick_usuario."', 
-                                '".$password_usuario."', 
-                                '".$rol_usuario."'
+                                '".$documento_usuario."', 
+                                '".$password_usuario."'
                             );";
        
         return $this->crear_ultimo_id($query);       
@@ -63,16 +52,13 @@ class UsuariosModel extends ModelBase {
     
     function editar(
                     $id_usuario, 
-                    $nick_usuario, 
-                    $password_usuario, 
-                    $estado_usuario, 
-                    $rol_usuario
+                    $documento_usuario, 
+                    $password_usuario
                 ) {
         
-        $query = "  UPDATE usuarios SET nick_usuario = '". $nick_usuario ."', 
-                                        password_usuario = '". $password_usuario ."', 
-                                        estado_usuario = '". $estado_usuario ."', 
-                                        rol_usuario = '". $rol_usuario ."'
+        $query = "  UPDATE usuarios 
+                    SET documento_usuario = '". $documento_usuario ."', 
+                        password_usuario = '". $password_usuario ."'
            
                     WHERE id_usuario = '" . $id_usuario . "'";
        
@@ -88,29 +74,28 @@ class UsuariosModel extends ModelBase {
 
     }
     
-    function validar($nick_usuario, $password_usuario) {
+    function validar($documento_usuario, $password_usuario) {
       
-        $query = "select 
-                    usuarios.id_usuario, 
-                    usuarios.nick_usuario, 
-                    usuarios.password_usuario,
-                    usuarios.estado_usuario,
-                    usuarios.rol_usuario,
-                
-                    roles.nombre_rol
-                
-                    from usuarios LEFT JOIN roles ON usuarios.rol_usuario = roles.id_rol
+        $query = "
+            
+            SELECT 
+                usuarios.id_usuario, 
+                usuarios.documento_usuario, 
+                usuarios.password_usuario
         
-                    WHERE   nick_usuario = '". $nick_usuario . "' AND 
-                            usuarios.password_usuario = '" . $password_usuario . "' AND 
-                            estado_usuario = '1'";
+            FROM usuarios left join perfiles
+                    on usuarios.documento_usuario = perfiles.documento_perfil
+
+            WHERE   documento_usuario = '". $documento_usuario . "' AND 
+                    usuarios.password_usuario = '" . $password_usuario . "' AND 
+                    perfiles.estado_perfil = '1'";
 
         $consulta = $this->consulta($query);
            
-        if ($consulta) {
-            return $consulta[0];
+        if (count($consulta) > 0) {
+            return true;
         }else{
-            return 1;
+            return false;
         }
 
     }
